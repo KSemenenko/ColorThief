@@ -5,7 +5,13 @@ VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ColorThief", "ColorThief\ColorThief.csproj", "{DC2C5866-89F7-4B71-8A4A-11C2D3CF24B0}"
 EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "ColorThieftShared", "ColorThieftShared\ColorThieftShared.shproj", "{FECB73A5-EFA0-42F0-8B4B-22197A68D28A}"
+EndProject
 Global
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		ColorThieftShared\ColorThieftShared.projitems*{fecb73a5-efa0-42f0-8b4b-22197a68d28a}*SharedItemsImports = 13
+		ColorThieftShared\ColorThieftShared.projitems*{dc2c5866-89f7-4b71-8a4a-11c2d3cf24b0}*SharedItemsImports = 4
+	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU

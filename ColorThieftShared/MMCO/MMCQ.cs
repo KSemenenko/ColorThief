@@ -1,55 +1,26 @@
-﻿#region License
-
-// Copyright (c) 2015 Harold Martinez-Molina <hanthonym@outlook.com>
-//
-// Permission is hereby granted, free of charge, to any person
-// obtaining a copy of this software and associated documentation
-// files (the "Software"), to deal in the Software without
-// restriction, including without limitation the rights to use,
-// copy, modify, merge, publish, distribute, sublicense, and/or sell
-// copies of the Software, and to permit persons to whom the
-// Software is furnished to do so, subject to the following
-// conditions:
-//
-// The above copyright notice and this permission notice shall be
-// included in all copies or substantial portions of the Software.
-//
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
-// EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
-// OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
-// NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
-// HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
-// WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
-// FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
-// OTHER DEALINGS IN THE SOFTWARE.
-
-#endregion
-
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
+using ColorThief.MMCO;
 
 namespace ColorThief
 {
     // ReSharper disable once InconsistentNaming
     public class MMCQ
     {
-        private const int Sigbits = 5;
-        private const int Rshift = 8 - Sigbits;
-        private const int Mult = 1 << Rshift;
-        private const int Histosize = 1 << (3*Sigbits);
-        private const int VboxLength = 1 << Sigbits;
-        private const double FractByPopulation = 0.75;
-        private const int MaxIterations = 1000;
-        private const double WeightSaturation = 3f;
-        private const double WeightLuma = 6f;
-        private const double WeightPopulation = 1f;
+        public const int Sigbits = 5;
+        public const int Rshift = 8 - Sigbits;
+        public const int Mult = 1 << Rshift;
+        public const int Histosize = 1 << (3*Sigbits);
+        public const int VboxLength = 1 << Sigbits;
+        public const double FractByPopulation = 0.75;
+        public const int MaxIterations = 1000;
+        public const double WeightSaturation = 3f;
+        public const double WeightLuma = 6f;
+        public const double WeightPopulation = 1f;
         private static readonly VBoxComparer ComparatorProduct = new VBoxComparer();
         private static readonly VBoxCountComparer ComparatorCount = new VBoxCountComparer();
-        
 
-        private static int GetColorIndex(int r, int g, int b)
+        public static int GetColorIndex(int r, int g, int b)
         {
             return (r << (2*Sigbits)) + (g << Sigbits) + b;
         }
@@ -160,7 +131,7 @@ namespace ColorThief
 
                     var d2 = left <= right
                         ? Math.Min(vboxDim2 - 1, ~~(i + right/2))
-                        : Math.Max(vboxDim1, ~~((int) (i - 1 - left/2.0)));
+                        : Math.Max(vboxDim1, ~~(int)(i - 1 - left/2.0));
 
                     // avoid 0-count boxes
                     while (d2 < 0 || partialsum[d2] <= 0)
@@ -375,7 +346,7 @@ namespace ColorThief
             var pq = new List<VBox> {vbox};
 
             // Round up to have the same behaviour as in JavaScript
-            var target = (int) Math.Ceiling(FractByPopulation*maxcolors);
+            var target = (int)Math.Ceiling(FractByPopulation*maxcolors);
 
             // first set of colors, sorted by population
             Iter(pq, ComparatorCount, target, histo);
@@ -400,14 +371,14 @@ namespace ColorThief
             return cmap;
         }
 
-        private static double CreateComparisonValue(double saturation, double targetSaturation,
+        public static double CreateComparisonValue(double saturation, double targetSaturation,
             double luma, double targetLuma,
             int population, int highestPopulation)
         {
             return WeightedMean(
                 InvertDiff(saturation, targetSaturation), WeightSaturation,
                 InvertDiff(luma, targetLuma), WeightLuma,
-                population/(double) highestPopulation, WeightPopulation
+                population/(double)highestPopulation, WeightPopulation
                 );
         }
 
@@ -421,7 +392,7 @@ namespace ColorThief
                 var value = values[i];
                 var weight = values[i + 1];
 
-                sum += (value*weight);
+                sum += value*weight;
                 sumWeight += weight;
             }
 
@@ -431,272 +402,6 @@ namespace ColorThief
         private static double InvertDiff(double value, double targetValue)
         {
             return 1 - Math.Abs(value - targetValue);
-        }
-
-        /// <summary>
-        ///     3D color space box.
-        /// </summary>
-        public class VBox
-        {
-            private readonly int[] _histo;
-            private int[] _avg;
-            private int? _count;
-            private int? _volume;
-            public int B1;
-            public int B2;
-            public int G1;
-            public int G2;
-            public int R1;
-            public int R2;
-
-            public VBox(int r1, int r2, int g1, int g2, int b1, int b2, int[] histo)
-            {
-                R1 = r1;
-                R2 = r2;
-                G1 = g1;
-                G2 = g2;
-                B1 = b1;
-                B2 = b2;
-
-                _histo = histo;
-            }
-
-            public int Volume(bool force)
-            {
-                if (_volume == null || force)
-                {
-                    _volume = ((R2 - R1 + 1)*(G2 - G1 + 1)*(B2 - B1 + 1));
-                }
-
-                return _volume.Value;
-            }
-
-            public int Count(bool force)
-            {
-                if (_count == null || force)
-                {
-                    var npix = 0;
-                    int i;
-
-                    for (i = R1; i <= R2; i++)
-                    {
-                        int j;
-                        for (j = G1; j <= G2; j++)
-                        {
-                            int k;
-                            for (k = B1; k <= B2; k++)
-                            {
-                                var index = GetColorIndex(i, j, k);
-                                npix += _histo[index];
-                            }
-                        }
-                    }
-
-                    _count = npix;
-                }
-
-                return _count.Value;
-            }
-
-            public VBox Clone()
-            {
-                return new VBox(R1, R2, G1, G2, B1, B2, _histo);
-            }
-
-            public int[] Avg(bool force)
-            {
-                if (_avg == null || force)
-                {
-                    var ntot = 0;
-
-                    var rsum = 0;
-                    var gsum = 0;
-                    var bsum = 0;
-
-                    int i;
-
-                    for (i = R1; i <= R2; i++)
-                    {
-                        int j;
-                        for (j = G1; j <= G2; j++)
-                        {
-                            int k;
-                            for (k = B1; k <= B2; k++)
-                            {
-                                var histoindex = GetColorIndex(i, j, k);
-                                var hval = _histo[histoindex];
-                                ntot += hval;
-                                rsum += (int) (hval*(i + 0.5)*Mult);
-                                gsum += (int) (hval*(j + 0.5)*Mult);
-                                bsum += (int) (hval*(k + 0.5)*Mult);
-                            }
-                        }
-                    }
-
-                    if (ntot > 0)
-                    {
-                        _avg = new[]
-                        {
-                            ~~(rsum/ntot), ~~(gsum/ntot),
-                            ~~(bsum/ntot)
-                        };
-                    }
-                    else
-                    {
-                        _avg = new[]
-                        {
-                            ~~(Mult*(R1 + R2 + 1)/2),
-                            ~~(Mult*(G1 + G2 + 1)/2),
-                            ~~(Mult*(B1 + B2 + 1)/2)
-                        };
-                    }
-                }
-
-                return _avg;
-            }
-
-            public bool Contains(int[] pixel)
-            {
-                var rval = pixel[0] >> Rshift;
-                var gval = pixel[1] >> Rshift;
-                var bval = pixel[2] >> Rshift;
-
-                return (rval >= R1 && rval <= R2 && gval >= G1 && gval <= G2
-                        && bval >= B1 && bval <= B2);
-            }
-        }
-
-        public class QuantizedColor
-        {
-            public QuantizedColor(Color color, int population)
-            {
-                Color = color;
-                Population = population;
-                IsDark = ColorUtility.CalculateYiqLuma(color) < 128;
-            }
-            
-            public Color Color { get; }
-            public int Population { get; }
-            public bool IsDark { get; }
-        }
-
-        /// <summary>
-        ///     Color map
-        /// </summary>
-        public class CMap
-        {
-            private readonly List<VBox> _vboxes = new List<VBox>();
-            private List<QuantizedColor> _palette;
-
-            public void Push(VBox box)
-            {
-                _palette = null;
-                _vboxes.Add(box);
-            }
-
-            public List<QuantizedColor> GeneratePalette()
-            {
-                return _palette ?? (_palette = (from vBox in _vboxes
-                    let rgb = vBox.Avg(false)
-                    let color = ColorUtility.FromRgb(rgb[0], rgb[1], rgb[2])
-                    select new QuantizedColor(color, vBox.Count(false))).ToList());
-            }
-
-            public int Size()
-            {
-                return _vboxes.Count;
-            }
-
-            public int[] Map(int[] color)
-            {
-                var numVBoxes = _vboxes.Count;
-                for (var i = 0; i < numVBoxes; i++)
-                {
-                    var vbox = _vboxes[i];
-                    if (vbox.Contains(color))
-                    {
-                        return vbox.Avg(false);
-                    }
-                }
-                return Nearest(color);
-            }
-
-            public int[] Nearest(int[] color)
-            {
-                var d1 = double.MaxValue;
-                int[] pColor = null;
-
-                var numVBoxes = _vboxes.Count;
-                for (var i = 0; i < numVBoxes; i++)
-                {
-                    var vbColor = _vboxes[i].Avg(false);
-                    var d2 = Math.Sqrt(Math.Pow(color[0] - vbColor[0], 2)
-                                       + Math.Pow(color[1] - vbColor[1], 2)
-                                       + Math.Pow(color[2] - vbColor[2], 2));
-                    if (d2 < d1)
-                    {
-                        d1 = d2;
-                        pColor = vbColor;
-                    }
-                }
-                return pColor;
-            }
-
-            public VBox FindColor(double targetLuma, double minLuma, double maxLuma,
-                double targetSaturation, double minSaturation, double maxSaturation)
-            {
-                VBox max = null;
-                double maxValue = 0;
-                var highestPopulation = _vboxes.Select(p => p.Count(false)).Max();
-
-                foreach (var swatch in _vboxes)
-                {
-                    var avg = swatch.Avg(false);
-                    var hsl = ColorUtility.FromRgb(avg[0], avg[1], avg[2]).ToHsl();
-                    var sat = hsl.S;
-                    var luma = hsl.L;
-
-                    if (sat >= minSaturation && sat <= maxSaturation &&
-                        luma >= minLuma && luma <= maxLuma)
-                    {
-                        var thisValue = CreateComparisonValue(sat, targetSaturation, luma, targetLuma,
-                            swatch.Count(false), highestPopulation);
-                        if (max == null || thisValue > maxValue)
-                        {
-                            max = swatch;
-                            maxValue = thisValue;
-                        }
-                    }
-                }
-
-                return max;
-            }
-        }
-
-        internal class VBoxCountComparer : IComparer<VBox>
-        {
-            public int Compare(VBox x, VBox y)
-            {
-                var a = x.Count(false);
-                var b = y.Count(false);
-                return (a < b) ? -1 : ((a > b) ? 1 : 0);
-            }
-        }
-
-        internal class VBoxComparer : IComparer<VBox>
-        {
-            public int Compare(VBox x, VBox y)
-            {
-                var aCount = x.Count(false);
-                var bCount = y.Count(false);
-                var aVolume = x.Volume(false);
-                var bVolume = y.Volume(false);
-
-                // Otherwise sort by products
-                var a = aCount*aVolume;
-                var b = bCount*bVolume;
-                return (a < b) ? -1 : ((a > b) ? 1 : 0);
-            }
         }
     }
 }
