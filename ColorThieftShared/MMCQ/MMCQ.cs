@@ -5,7 +5,7 @@ using ColorThief.MMCO;
 namespace ColorThief
 {
     // ReSharper disable once InconsistentNaming
-    public class MMCQ
+    public static class MMCQ
     {
         public const int Sigbits = 5;
         public const int Rshift = 8 - Sigbits;
