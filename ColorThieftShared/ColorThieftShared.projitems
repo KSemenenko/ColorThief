@@ -10,11 +10,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)Color.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ColorUtility.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)HslColor.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)MMCO\CMap.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)MMCO\MMCQ.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)MMCO\QuantizedColor.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)MMCO\VBox.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)MMCQ\CMap.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)MMCQ\MMCQ.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)QuantizedColor.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)MMCQ\VBox.cs" />
   </ItemGroup>
 </Project>

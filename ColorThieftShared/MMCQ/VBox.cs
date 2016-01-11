@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace ColorThief.MMCO
 {
@@ -8,15 +9,15 @@ namespace ColorThief.MMCO
     public class VBox
     {
         private readonly int[] histo;
-        private int[] avg;
-        private int? count;
-        private int? volume;
         public int B1;
         public int B2;
         public int G1;
         public int G2;
         public int R1;
         public int R2;
+        private int[] avg;
+        private int? count;
+        private int? volume;
 
         public VBox(int r1, int r2, int g1, int g2, int b1, int b2, int[] histo)
         {
@@ -34,7 +35,7 @@ namespace ColorThief.MMCO
         {
             if (volume == null || force)
             {
-                volume = (R2 - R1 + 1)*(G2 - G1 + 1)*(B2 - B1 + 1);
+                volume = (R2 - R1 + 1) * (G2 - G1 + 1) * (B2 - B1 + 1);
             }
 
             return volume.Value;
@@ -44,7 +45,7 @@ namespace ColorThief.MMCO
         {
             if (count == null || force)
             {
-                var npix = 0;
+                int npix = 0;
                 int i;
 
                 for (i = R1; i <= R2; i++)
@@ -55,7 +56,7 @@ namespace ColorThief.MMCO
                         int k;
                         for (k = B1; k <= B2; k++)
                         {
-                            var index = MMCQ.GetColorIndex(i, j, k);
+                            int index = MMCQ.GetColorIndex(i, j, k);
                             npix += histo[index];
                         }
                     }
@@ -76,11 +77,11 @@ namespace ColorThief.MMCO
         {
             if (avg == null || force)
             {
-                var ntot = 0;
+                int ntot = 0;
 
-                var rsum = 0;
-                var gsum = 0;
-                var bsum = 0;
+                int rsum = 0;
+                int gsum = 0;
+                int bsum = 0;
 
                 int i;
 
@@ -92,12 +93,12 @@ namespace ColorThief.MMCO
                         int k;
                         for (k = B1; k <= B2; k++)
                         {
-                            var histoindex = MMCQ.GetColorIndex(i, j, k);
-                            var hval = histo[histoindex];
+                            int histoindex = MMCQ.GetColorIndex(i, j, k);
+                            int hval = histo[histoindex];
                             ntot += hval;
-                            rsum += (int)(hval*(i + 0.5)*MMCQ.Mult);
-                            gsum += (int)(hval*(j + 0.5)*MMCQ.Mult);
-                            bsum += (int)(hval*(k + 0.5)*MMCQ.Mult);
+                            rsum += Convert.ToInt32((hval * (i + 0.5) * MMCQ.Mult));
+                            gsum += Convert.ToInt32((hval * (j + 0.5) * MMCQ.Mult));
+                            bsum += Convert.ToInt32((hval * (k + 0.5) * MMCQ.Mult));
                         }
                     }
                 }
@@ -106,17 +107,17 @@ namespace ColorThief.MMCO
                 {
                     avg = new[]
                     {
-                        ~~(rsum/ntot), ~~(gsum/ntot),
-                        ~~(bsum/ntot)
+                        ~~(rsum / ntot), ~~(gsum / ntot),
+                        ~~(bsum / ntot)
                     };
                 }
                 else
                 {
                     avg = new[]
                     {
-                        ~~(MMCQ.Mult*(R1 + R2 + 1)/2),
-                        ~~(MMCQ.Mult*(G1 + G2 + 1)/2),
-                        ~~(MMCQ.Mult*(B1 + B2 + 1)/2)
+                        ~~(MMCQ.Mult * (R1 + R2 + 1) / 2),
+                        ~~(MMCQ.Mult * (G1 + G2 + 1) / 2),
+                        ~~(MMCQ.Mult * (B1 + B2 + 1) / 2)
                     };
                 }
             }
@@ -126,9 +127,9 @@ namespace ColorThief.MMCO
 
         public bool Contains(int[] pixel)
         {
-            var rval = pixel[0] >> MMCQ.Rshift;
-            var gval = pixel[1] >> MMCQ.Rshift;
-            var bval = pixel[2] >> MMCQ.Rshift;
+            int rval = pixel[0] >> MMCQ.Rshift;
+            int gval = pixel[1] >> MMCQ.Rshift;
+            int bval = pixel[2] >> MMCQ.Rshift;
 
             return rval >= R1 && rval <= R2 && gval >= G1 && gval <= G2
                    && bval >= B1 && bval <= B2;
@@ -139,8 +140,8 @@ namespace ColorThief.MMCO
     {
         public int Compare(VBox x, VBox y)
         {
-            var a = x.Count(false);
-            var b = y.Count(false);
+            int a = x.Count(false);
+            int b = y.Count(false);
             return a < b ? -1 : (a > b ? 1 : 0);
         }
     }
@@ -149,14 +150,14 @@ namespace ColorThief.MMCO
     {
         public int Compare(VBox x, VBox y)
         {
-            var aCount = x.Count(false);
-            var bCount = y.Count(false);
-            var aVolume = x.Volume(false);
-            var bVolume = y.Volume(false);
+            int aCount = x.Count(false);
+            int bCount = y.Count(false);
+            int aVolume = x.Volume(false);
+            int bVolume = y.Volume(false);
 
             // Otherwise sort by products
-            var a = aCount*aVolume;
-            var b = bCount*bVolume;
+            int a = aCount * aVolume;
+            int b = bCount * bVolume;
             return a < b ? -1 : (a > b ? 1 : 0);
         }
     }

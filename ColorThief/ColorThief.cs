@@ -30,7 +30,7 @@ namespace ColorThief
             bool ignoreWhite = DefaultIgnoreWhite)
         {
             var palette = GetPalette(sourceImage, DefaultColorCount, quality, ignoreWhite);
-            var dominantColor = palette?[0];
+            var dominantColor = palette.FirstOrDefault();
             return dominantColor;
         }
 
@@ -55,7 +55,11 @@ namespace ColorThief
             bool ignoreWhite = DefaultIgnoreWhite)
         {
             var cmap = GetColorMap(sourceImage, colorCount, quality, ignoreWhite);
-            return cmap?.GeneratePalette();
+
+            if(cmap != null)
+                return cmap.GeneratePalette();
+
+            return new List<QuantizedColor>();
         }
 
         /// <summary>

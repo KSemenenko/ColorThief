@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace ColorThief
+﻿namespace ColorThief
 {
     /// <summary>
     ///     Defines a color in Hue/Saturation/Lightness (HSL) space.

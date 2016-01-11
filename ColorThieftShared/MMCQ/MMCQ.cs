@@ -10,7 +10,7 @@ namespace ColorThief
         public const int Sigbits = 5;
         public const int Rshift = 8 - Sigbits;
         public const int Mult = 1 << Rshift;
-        public const int Histosize = 1 << (3*Sigbits);
+        public const int Histosize = 1 << (3 * Sigbits);
         public const int VboxLength = 1 << Sigbits;
         public const double FractByPopulation = 0.75;
         public const int MaxIterations = 1000;
@@ -22,7 +22,7 @@ namespace ColorThief
 
         public static int GetColorIndex(int r, int g, int b)
         {
-            return (r << (2*Sigbits)) + (g << Sigbits) + b;
+            return (r << (2 * Sigbits)) + (g << Sigbits) + b;
         }
 
         /// <summary>
@@ -30,37 +30,37 @@ namespace ColorThief
         /// </summary>
         /// <param name="pixels">The pixels.</param>
         /// <returns>Histo (1-d array, giving the number of pixels in each quantized region of color space), or null on error.</returns>
-        private static int[] GetHisto(IReadOnlyList<int[]> pixels)
+        private static int[] GetHisto(IList<int[]> pixels)
         {
             var histo = new int[Histosize];
 
-            var numPixels = pixels.Count;
-            for (var i = 0; i < numPixels; i++)
+            int numPixels = pixels.Count;
+            for (int i = 0; i < numPixels; i++)
             {
-                var pixel = pixels[i];
-                var rval = pixel[0] >> Rshift;
-                var gval = pixel[1] >> Rshift;
-                var bval = pixel[2] >> Rshift;
-                var index = GetColorIndex(rval, gval, bval);
+                int[] pixel = pixels[i];
+                int rval = pixel[0] >> Rshift;
+                int gval = pixel[1] >> Rshift;
+                int bval = pixel[2] >> Rshift;
+                int index = GetColorIndex(rval, gval, bval);
                 histo[index]++;
             }
             return histo;
         }
 
-        private static VBox VboxFromPixels(IReadOnlyList<int[]> pixels, int[] histo)
+        private static VBox VboxFromPixels(IList<int[]> pixels, int[] histo)
         {
             int rmin = 1000000, rmax = 0;
             int gmin = 1000000, gmax = 0;
             int bmin = 1000000, bmax = 0;
 
             // find min/max
-            var numPixels = pixels.Count;
-            for (var i = 0; i < numPixels; i++)
+            int numPixels = pixels.Count;
+            for (int i = 0; i < numPixels; i++)
             {
-                var pixel = pixels[i];
-                var rval = pixel[0] >> Rshift;
-                var gval = pixel[1] >> Rshift;
-                var bval = pixel[2] >> Rshift;
+                int[] pixel = pixels[i];
+                int rval = pixel[0] >> Rshift;
+                int gval = pixel[1] >> Rshift;
+                int bval = pixel[2] >> Rshift;
 
                 if (rval < rmin)
                 {
@@ -96,8 +96,8 @@ namespace ColorThief
         private static VBox[] DoCut(
             char color,
             VBox vbox,
-            IReadOnlyList<int> partialsum,
-            IReadOnlyList<int> lookaheadsum,
+            IList<int> partialsum,
+            IList<int> lookaheadsum,
             int total)
         {
             int vboxDim1;
@@ -119,26 +119,26 @@ namespace ColorThief
                     break;
             }
 
-            for (var i = vboxDim1; i <= vboxDim2; i++)
+            for (int i = vboxDim1; i <= vboxDim2; i++)
             {
-                if (partialsum[i] > total/2)
+                if (partialsum[i] > total / 2)
                 {
-                    var vbox1 = vbox.Clone();
-                    var vbox2 = vbox.Clone();
+                    VBox vbox1 = vbox.Clone();
+                    VBox vbox2 = vbox.Clone();
 
-                    var left = i - vboxDim1;
-                    var right = vboxDim2 - i;
+                    int left = i - vboxDim1;
+                    int right = vboxDim2 - i;
 
-                    var d2 = left <= right
-                        ? Math.Min(vboxDim2 - 1, ~~(i + right/2))
-                        : Math.Max(vboxDim1, ~~(int)(i - 1 - left/2.0));
+                    int d2 = left <= right
+                        ? Math.Min(vboxDim2 - 1, ~~(i + right / 2))
+                        : Math.Max(vboxDim1, ~~(int)(i - 1 - left / 2.0));
 
                     // avoid 0-count boxes
                     while (d2 < 0 || partialsum[d2] <= 0)
                     {
                         d2++;
                     }
-                    var count2 = lookaheadsum[d2];
+                    int count2 = lookaheadsum[d2];
                     while (count2 == 0 && d2 > 0 && partialsum[d2 - 1] > 0)
                     {
                         count2 = lookaheadsum[--d2];
@@ -168,7 +168,7 @@ namespace ColorThief
             throw new Exception("VBox can't be cut");
         }
 
-        private static VBox[] MedianCutApply(IReadOnlyList<int> histo, VBox vbox)
+        private static VBox[] MedianCutApply(IList<int> histo, VBox vbox)
         {
             if (vbox.Count(false) == 0)
             {
@@ -181,23 +181,23 @@ namespace ColorThief
 
             // only one pixel, no split
 
-            var rw = vbox.R2 - vbox.R1 + 1;
-            var gw = vbox.G2 - vbox.G1 + 1;
-            var bw = vbox.B2 - vbox.B1 + 1;
-            var maxw = Math.Max(Math.Max(rw, gw), bw);
+            int rw = vbox.R2 - vbox.R1 + 1;
+            int gw = vbox.G2 - vbox.G1 + 1;
+            int bw = vbox.B2 - vbox.B1 + 1;
+            int maxw = Math.Max(Math.Max(rw, gw), bw);
 
             // Find the partial sum arrays along the selected axis.
-            var total = 0;
+            int total = 0;
             var partialsum = new int[VboxLength];
             // -1 = not set / 0 = 0
-            for (var l = 0; l < partialsum.Length; l++)
+            for (int l = 0; l < partialsum.Length; l++)
             {
                 partialsum[l] = -1;
             }
 
             // -1 = not set / 0 = 0
             var lookaheadsum = new int[VboxLength];
-            for (var l = 0; l < lookaheadsum.Length; l++)
+            for (int l = 0; l < lookaheadsum.Length; l++)
             {
                 lookaheadsum[l] = -1;
             }
@@ -239,7 +239,7 @@ namespace ColorThief
                 }
             }
             else
-            /* maxw == bw */
+                /* maxw == bw */
             {
                 for (i = vbox.B1; i <= vbox.B2; i++)
                 {
@@ -285,14 +285,14 @@ namespace ColorThief
             List<VBox> lh,
             IComparer<VBox> comparator,
             int target,
-            IReadOnlyList<int> histo)
+            IList<int> histo)
         {
-            var ncolors = 1;
-            var niters = 0;
+            int ncolors = 1;
+            int niters = 0;
 
             while (niters < MaxIterations)
             {
-                var vbox = lh[lh.Count - 1];
+                VBox vbox = lh[lh.Count - 1];
                 if (vbox.Count(false) == 0)
                 {
                     lh.Sort(comparator);
@@ -302,9 +302,9 @@ namespace ColorThief
                 lh.RemoveAt(lh.Count - 1);
 
                 // do the cut
-                var vboxes = MedianCutApply(histo, vbox);
-                var vbox1 = vboxes[0];
-                var vbox2 = vboxes[1];
+                VBox[] vboxes = MedianCutApply(histo, vbox);
+                VBox vbox1 = vboxes[0];
+                VBox vbox2 = vboxes[1];
 
                 if (vbox1 == null)
                 {
@@ -339,14 +339,14 @@ namespace ColorThief
                 return null;
             }
 
-            var histo = GetHisto(pixels);
+            int[] histo = GetHisto(pixels);
 
             // get the beginning vbox from the colors
-            var vbox = VboxFromPixels(pixels, histo);
+            VBox vbox = VboxFromPixels(pixels, histo);
             var pq = new List<VBox> {vbox};
 
             // Round up to have the same behaviour as in JavaScript
-            var target = (int)Math.Ceiling(FractByPopulation*maxcolors);
+            var target = (int)Math.Ceiling(FractByPopulation * maxcolors);
 
             // first set of colors, sorted by population
             Iter(pq, ComparatorCount, target, histo);
@@ -363,7 +363,7 @@ namespace ColorThief
 
             // calculate the actual colors
             var cmap = new CMap();
-            foreach (var vb in pq)
+            foreach (VBox vb in pq)
             {
                 cmap.Push(vb);
             }
@@ -378,7 +378,7 @@ namespace ColorThief
             return WeightedMean(
                 InvertDiff(saturation, targetSaturation), WeightSaturation,
                 InvertDiff(luma, targetLuma), WeightLuma,
-                population/(double)highestPopulation, WeightPopulation
+                population / (double)highestPopulation, WeightPopulation
                 );
         }
 
@@ -387,16 +387,16 @@ namespace ColorThief
             double sum = 0;
             double sumWeight = 0;
 
-            for (var i = 0; i < values.Length; i += 2)
+            for (int i = 0; i < values.Length; i += 2)
             {
-                var value = values[i];
-                var weight = values[i + 1];
+                double value = values[i];
+                double weight = values[i + 1];
 
-                sum += value*weight;
+                sum += value * weight;
                 sumWeight += weight;
             }
 
-            return sum/sumWeight;
+            return sum / sumWeight;
         }
 
         private static double InvertDiff(double value, double targetValue)
