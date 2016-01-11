@@ -20,10 +20,15 @@ namespace ColorThief.MMCO
 
         public List<QuantizedColor> GeneratePalette()
         {
-            return palette ?? (palette = (from vBox in vboxes
-                let rgb = vBox.Avg(false)
-                let color = FromRgb(rgb[0], rgb[1], rgb[2])
-                select new QuantizedColor(color, vBox.Count(false))).ToList());
+            if (palette == null)
+            {
+                palette = (from vBox in vboxes
+                           let rgb = vBox.Avg(false)
+                           let color = FromRgb(rgb[0], rgb[1], rgb[2])
+                           select new QuantizedColor(color, vBox.Count(false))).ToList();
+            }    
+
+            return palette;
         }
 
         public int Size()

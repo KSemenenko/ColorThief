@@ -63,7 +63,7 @@ namespace ColorThief
         /// <param name="sourceImage">The source image.</param>
         /// <param name="colorCount">The color count.</param>
         /// <returns></returns>
-        public CMap GetColorMap(Bitmap sourceImage, int colorCount)
+        private CMap GetColorMap(Bitmap sourceImage, int colorCount)
         {
             return GetColorMap(
                 sourceImage,
@@ -85,7 +85,7 @@ namespace ColorThief
         /// </param>
         /// <param name="ignoreWhite">if set to <c>true</c> [ignore white].</param>
         /// <returns></returns>
-        public CMap GetColorMap(Bitmap sourceImage, int colorCount, int quality, bool ignoreWhite)
+        private CMap GetColorMap(Bitmap sourceImage, int colorCount, int quality, bool ignoreWhite)
         {
             int[][] pixelArray = GetPixelsFast(sourceImage, quality, ignoreWhite);
 
@@ -95,7 +95,7 @@ namespace ColorThief
             return cmap;
         }
 
-        public IEnumerable<int> GetIntFromPixel(Bitmap bmp)
+        private IEnumerable<int> GetIntFromPixel(Bitmap bmp)
         {
             for (int x = 0; x < bmp.Width; x++)
             {
