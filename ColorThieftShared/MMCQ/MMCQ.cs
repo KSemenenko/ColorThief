@@ -5,7 +5,7 @@ using ColorThief.MMCO;
 namespace ColorThief
 {
     // ReSharper disable once InconsistentNaming
-    public static class MMCQ
+    internal static class MMCQ
     {
         public const int Sigbits = 5;
         public const int Rshift = 8 - Sigbits;
@@ -14,9 +14,9 @@ namespace ColorThief
         public const int VboxLength = 1 << Sigbits;
         public const double FractByPopulation = 0.75;
         public const int MaxIterations = 1000;
-        public const double WeightSaturation = 3f;
-        public const double WeightLuma = 6f;
-        public const double WeightPopulation = 1f;
+        public const double WeightSaturation = 3d;
+        public const double WeightLuma = 6d;
+        public const double WeightPopulation = 1d;
         private static readonly VBoxComparer ComparatorProduct = new VBoxComparer();
         private static readonly VBoxCountComparer ComparatorCount = new VBoxCountComparer();
 
@@ -30,14 +30,12 @@ namespace ColorThief
         /// </summary>
         /// <param name="pixels">The pixels.</param>
         /// <returns>Histo (1-d array, giving the number of pixels in each quantized region of color space), or null on error.</returns>
-        private static int[] GetHisto(IList<int[]> pixels)
+        private static int[] GetHisto(IEnumerable<int[]> pixels)
         {
             var histo = new int[Histosize];
 
-            int numPixels = pixels.Count;
-            for (int i = 0; i < numPixels; i++)
+            foreach (int[] pixel in pixels)
             {
-                int[] pixel = pixels[i];
                 int rval = pixel[0] >> Rshift;
                 int gval = pixel[1] >> Rshift;
                 int bval = pixel[2] >> Rshift;
@@ -93,12 +91,7 @@ namespace ColorThief
             return new VBox(rmin, rmax, gmin, gmax, bmin, bmax, histo);
         }
 
-        private static VBox[] DoCut(
-            char color,
-            VBox vbox,
-            IList<int> partialsum,
-            IList<int> lookaheadsum,
-            int total)
+        private static VBox[] DoCut(char color, VBox vbox, IList<int> partialsum, IList<int> lookaheadsum, int total)
         {
             int vboxDim1;
             int vboxDim2;
@@ -130,8 +123,8 @@ namespace ColorThief
                     int right = vboxDim2 - i;
 
                     int d2 = left <= right
-                        ? Math.Min(vboxDim2 - 1, ~~(i + right / 2))
-                        : Math.Max(vboxDim1, ~~(int)(i - 1 - left / 2.0));
+                        ? Math.Min(vboxDim2 - 1, Math.Abs(i + right / 2))
+                        : Math.Max(vboxDim1, Math.Abs(Convert.ToInt32(i - 1 - left / 2.0)));
 
                     // avoid 0-count boxes
                     while (d2 < 0 || partialsum[d2] <= 0)
@@ -281,11 +274,7 @@ namespace ColorThief
         /// <param name="target">The target.</param>
         /// <param name="histo">The histo.</param>
         /// <exception cref="System.Exception">vbox1 not defined; shouldn't happen!</exception>
-        private static void Iter(
-            List<VBox> lh,
-            IComparer<VBox> comparator,
-            int target,
-            IList<int> histo)
+        private static void Iter(List<VBox> lh, IComparer<VBox> comparator, int target, IList<int> histo)
         {
             int ncolors = 1;
             int niters = 0;
@@ -371,15 +360,12 @@ namespace ColorThief
             return cmap;
         }
 
-        public static double CreateComparisonValue(double saturation, double targetSaturation,
-            double luma, double targetLuma,
+        public static double CreateComparisonValue(double saturation, double targetSaturation, double luma, double targetLuma,
             int population, int highestPopulation)
         {
-            return WeightedMean(
-                InvertDiff(saturation, targetSaturation), WeightSaturation,
+            return WeightedMean(InvertDiff(saturation, targetSaturation), WeightSaturation,
                 InvertDiff(luma, targetLuma), WeightLuma,
-                population / (double)highestPopulation, WeightPopulation
-                );
+                population / (double)highestPopulation, WeightPopulation);
         }
 
         private static double WeightedMean(params double[] values)

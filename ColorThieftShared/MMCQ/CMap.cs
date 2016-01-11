@@ -7,7 +7,7 @@ namespace ColorThief.MMCO
     /// <summary>
     ///     Color map
     /// </summary>
-    public class CMap
+    internal class CMap
     {
         private readonly List<VBox> vboxes = new List<VBox>();
         private List<QuantizedColor> palette;
@@ -38,14 +38,9 @@ namespace ColorThief.MMCO
 
         public int[] Map(int[] color)
         {
-            int numVBoxes = vboxes.Count;
-            for (int i = 0; i < numVBoxes; i++)
+            foreach (VBox vbox in vboxes.Where(vbox => vbox.Contains(color)))
             {
-                VBox vbox = vboxes[i];
-                if (vbox.Contains(color))
-                {
-                    return vbox.Avg(false);
-                }
+                return vbox.Avg(false);
             }
             return Nearest(color);
         }
@@ -55,10 +50,9 @@ namespace ColorThief.MMCO
             double d1 = double.MaxValue;
             int[] pColor = null;
 
-            int numVBoxes = vboxes.Count;
-            for (int i = 0; i < numVBoxes; i++)
+            foreach (VBox t in vboxes)
             {
-                int[] vbColor = vboxes[i].Avg(false);
+                int[] vbColor = t.Avg(false);
                 double d2 = Math.Sqrt(Math.Pow(color[0] - vbColor[0], 2)
                                       + Math.Pow(color[1] - vbColor[1], 2)
                                       + Math.Pow(color[2] - vbColor[2], 2));
@@ -90,6 +84,7 @@ namespace ColorThief.MMCO
                 {
                     double thisValue = MMCQ.CreateComparisonValue(sat, targetSaturation, luma, targetLuma,
                         swatch.Count(false), highestPopulation);
+
                     if (max == null || thisValue > maxValue)
                     {
                         max = swatch;

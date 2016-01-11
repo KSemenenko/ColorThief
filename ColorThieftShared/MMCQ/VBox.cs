@@ -6,7 +6,7 @@ namespace ColorThief.MMCO
     /// <summary>
     ///     3D color space box.
     /// </summary>
-    public class VBox
+    internal class VBox
     {
         private readonly int[] histo;
         public int B1;
@@ -107,17 +107,17 @@ namespace ColorThief.MMCO
                 {
                     avg = new[]
                     {
-                        ~~(rsum / ntot), ~~(gsum / ntot),
-                        ~~(bsum / ntot)
+                        Math.Abs(rsum / ntot), Math.Abs(gsum / ntot),
+                        Math.Abs(bsum / ntot)
                     };
                 }
                 else
                 {
                     avg = new[]
                     {
-                        ~~(MMCQ.Mult * (R1 + R2 + 1) / 2),
-                        ~~(MMCQ.Mult * (G1 + G2 + 1) / 2),
-                        ~~(MMCQ.Mult * (B1 + B2 + 1) / 2)
+                        Math.Abs(MMCQ.Mult * (R1 + R2 + 1) / 2),
+                        Math.Abs(MMCQ.Mult * (G1 + G2 + 1) / 2),
+                        Math.Abs(MMCQ.Mult * (B1 + B2 + 1) / 2)
                     };
                 }
             }
@@ -131,8 +131,7 @@ namespace ColorThief.MMCO
             int gval = pixel[1] >> MMCQ.Rshift;
             int bval = pixel[2] >> MMCQ.Rshift;
 
-            return rval >= R1 && rval <= R2 && gval >= G1 && gval <= G2
-                   && bval >= B1 && bval <= B2;
+            return rval >= R1 && rval <= R2 && gval >= G1 && gval <= G2 && bval >= B1 && bval <= B2;
         }
     }
 

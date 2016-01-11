@@ -48,28 +48,7 @@ namespace ColorThief
         public List<QuantizedColor> GetPalette(Bitmap sourceImage, int colorCount = DefaultColorCount, int quality = DefaultQuality, bool ignoreWhite = DefaultIgnoreWhite)
         {
             CMap cmap = GetColorMap(sourceImage, colorCount, quality, ignoreWhite);
-
-            if (cmap != null)
-            {
-                return cmap.GeneratePalette();
-            }
-
-            return new List<QuantizedColor>();
-        }
-
-        /// <summary>
-        ///     Use the median cut algorithm to cluster similar colors.
-        /// </summary>
-        /// <param name="sourceImage">The source image.</param>
-        /// <param name="colorCount">The color count.</param>
-        /// <returns></returns>
-        private CMap GetColorMap(Bitmap sourceImage, int colorCount)
-        {
-            return GetColorMap(
-                sourceImage,
-                colorCount,
-                DefaultQuality,
-                DefaultIgnoreWhite);
+            return cmap != null ? cmap.GeneratePalette() : new List<QuantizedColor>();
         }
 
         /// <summary>
@@ -85,7 +64,7 @@ namespace ColorThief
         /// </param>
         /// <param name="ignoreWhite">if set to <c>true</c> [ignore white].</param>
         /// <returns></returns>
-        private CMap GetColorMap(Bitmap sourceImage, int colorCount, int quality, bool ignoreWhite)
+        private CMap GetColorMap(Bitmap sourceImage, int colorCount, int quality = DefaultQuality, bool ignoreWhite = DefaultIgnoreWhite)
         {
             int[][] pixelArray = GetPixelsFast(sourceImage, quality, ignoreWhite);
 
@@ -116,7 +95,7 @@ namespace ColorThief
             int[] pixels = imageData.ToArray();
             int pixelCount = sourceImage.Width * sourceImage.Height;
 
-            int colorDepth = 4;
+            const int colorDepth = 4;
 
             int expectedDataLength = pixelCount * colorDepth;
             if (expectedDataLength != pixels.Length)
