@@ -110,7 +110,8 @@ namespace ColorThief
 
             // numRegardedPixels must be rounded up to avoid an
             // ArrayIndexOutOfBoundsException if all pixels are good.
-            int numRegardedPixels = (pixelCount + quality - 1) / quality;
+
+            int numRegardedPixels =  (quality <= 0) ? 0 : (pixelCount + quality - 1) / quality;
 
             int numUsedPixels = 0;
             var pixelArray = new int[numRegardedPixels][];
