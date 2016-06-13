@@ -1,11 +1,16 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.24720.0
+VisualStudioVersion = 14.0.25123.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ColorThief", "ColorThief\ColorThief.csproj", "{DC2C5866-89F7-4B71-8A4A-11C2D3CF24B0}"
 EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "ColorThieftShared", "ColorThieftShared\ColorThieftShared.shproj", "{FECB73A5-EFA0-42F0-8B4B-22197A68D28A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NuGet", "NuGet", "{1A07DB09-5B45-41B5-BBDB-26D468E8B8F5}"
+	ProjectSection(SolutionItems) = preProject
+		ColorThief.nuspec = ColorThief.nuspec
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution

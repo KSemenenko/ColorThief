@@ -9,11 +9,11 @@
     <Import_RootNamespace>ColorThieftShared</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)CMap.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Color.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)HslColor.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)MMCQ\CMap.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)MMCQ\MMCQ.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Mmcq.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)QuantizedColor.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)MMCQ\VBox.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)VBox.cs" />
   </ItemGroup>
 </Project>

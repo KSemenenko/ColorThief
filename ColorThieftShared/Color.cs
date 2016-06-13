@@ -13,9 +13,9 @@ namespace ColorThief
         public byte A;
 
         /// <summary>
-        ///     Get or Set the Red component value for sRGB.
+        ///     Get or Set the Blue component value for sRGB.
         /// </summary>
-        public byte R;
+        public byte B;
 
         /// <summary>
         ///     Get or Set the Green component value for sRGB.
@@ -23,9 +23,9 @@ namespace ColorThief
         public byte G;
 
         /// <summary>
-        ///     Get or Set the Blue component value for sRGB.
+        ///     Get or Set the Red component value for sRGB.
         /// </summary>
-        public byte B;
+        public byte R;
 
         /// <summary>
         ///     Get HSL color.
@@ -34,24 +34,24 @@ namespace ColorThief
         public HslColor ToHsl()
         {
             const double toDouble = 1.0 / 255;
-            double r = toDouble * R;
-            double g = toDouble * G;
-            double b = toDouble * B;
-            double max = Math.Max(Math.Max(r, g), b);
-            double min = Math.Min(Math.Min(r, g), b);
-            double chroma = max - min;
+            var r = toDouble * R;
+            var g = toDouble * G;
+            var b = toDouble * B;
+            var max = Math.Max(Math.Max(r, g), b);
+            var min = Math.Min(Math.Min(r, g), b);
+            var chroma = max - min;
             double h1;
 
             // ReSharper disable CompareOfFloatsByEqualityOperator
-            if (chroma == 0)
+            if(chroma == 0)
             {
                 h1 = 0;
             }
-            else if (max == r)
+            else if(max == r)
             {
                 h1 = (g - b) / chroma % 6;
             }
-            else if (max == g)
+            else if(max == g)
             {
                 h1 = 2 + (b - r) / chroma;
             }
@@ -60,8 +60,8 @@ namespace ColorThief
                 h1 = 4 + (r - g) / chroma;
             }
 
-            double lightness = 0.5 * (max - min);
-            double saturation = chroma == 0 ? 0 : chroma / (1 - Math.Abs(2 * lightness - 1));
+            var lightness = 0.5 * (max - min);
+            var saturation = chroma == 0 ? 0 : chroma / (1 - Math.Abs(2 * lightness - 1));
             HslColor ret;
             ret.H = 60 * h1;
             ret.S = saturation;

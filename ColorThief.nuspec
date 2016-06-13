@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata minClientVersion="2.8.3">
+    <id>ksemenenko.ColorThief</id>
+    <version>0.1.0-beta</version>
+    <title>Color Thief for .NET</title>
+    <authors>ksemenenko</authors>
+    <owners>ksemenenko</owners>
+    <licenseUrl>https://github.com/KSemenenko/ColorThief/blob/master/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/KSemenenko/ColorThief</projectUrl>
+    <!--<iconUrl>https://raw.githubusercontent.com/jamesmontemagno/Xamarin-Templates/master/Plugins-Templates/icons/plugin_icon_nuget.png</iconUrl>-->
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>
+       A code for grabbing the color palette from an image. Uses C# and .NET to make it happen.
+    </description>
+    <summary> A code for grabbing the color palette from an image. Uses C# and .NET to make it happen.</summary>
+    <tags>ColorThief, Color, Thief, xamarin, pcl, plugin, plugin for xamarin, windows phone, uwp, winphone, wp8, winrt, android, xamarin.forms, ios, mac, version</tags>
+    <dependencies>
+    </dependencies>
+  </metadata>
+  <files>
+    <!--Core-->
+    <file src="Plugin.ColorThief\Plugin.ColorThief\bin\Release\Plugin.ColorThief.dll" target="lib\portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10+UAP10\Plugin.ColorThief.dll" />
+    <file src="Plugin.ColorThief\Plugin.ColorThief\bin\Release\Plugin.ColorThief.xml" target="lib\portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10+UAP10\Plugin.ColorThief.xml" />
+    <file src="Plugin.ColorThief\Plugin.ColorThief\bin\Release\Plugin.ColorThief.pdb" target="lib\portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10+UAP10\Plugin.ColorThief.pdb" />
+    <file src="Plugin.ColorThief\Plugin.ColorThief.Abstractions\bin\Release\Plugin.ColorThief.Abstractions.dll" target="lib\portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10+UAP10\Plugin.ColorThief.Abstractions.dll" />
+    <file src="Plugin.ColorThief\Plugin.ColorThief.Abstractions\bin\Release\Plugin.ColorThief.Abstractions.xml" target="lib\portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10+UAP10\Plugin.ColorThief.Abstractions.xml" />
+    <file src="Plugin.ColorThief\Plugin.ColorThief.Abstractions\bin\Release\Plugin.ColorThief.Abstractions.pdb" target="lib\portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10+UAP10\Plugin.ColorThief.Abstractions.pdb" />
+
+    <!--dotnet-->
+    <file src="Plugin.ColorThief\Plugin.ColorThief\bin\Release\Plugin.ColorThief.dll" target="lib\dotnet\Plugin.ColorThief.dll" />
+    <file src="Plugin.ColorThief\Plugin.ColorThief\bin\Release\Plugin.ColorThief.xml" target="lib\dotnet\Plugin.ColorThief.xml" />
+    <file src="Plugin.ColorThief\Plugin.ColorThief\bin\Release\Plugin.ColorThief.pdb" target="lib\dotnet\Plugin.ColorThief.pdb" />
+    <file src="Plugin.ColorThief\Plugin.ColorThief.Abstractions\bin\Release\Plugin.ColorThief.Abstractions.dll" target="lib\dotnet\Plugin.ColorThief.Abstractions.dll" />
+    <file src="Plugin.ColorThief\Plugin.ColorThief.Abstractions\bin\Release\Plugin.ColorThief.Abstractions.xml" target="lib\dotnet\Plugin.ColorThief.Abstractions.xml" />
+    <file src="Plugin.ColorThief\Plugin.ColorThief.Abstractions\bin\Release\Plugin.ColorThief.Abstractions.pdb" target="lib\dotnet\Plugin.ColorThief.Abstractions.pdb" />
+
+    <!--Win Phone Silverlight
+        <file src="Plugin.ColorThief\Plugin.ColorThief.WindowsPhone8\bin\Release\Plugin.ColorThief.dll" target="lib\wp8\Plugin.ColorThief.dll" />
+        <file src="Plugin.ColorThief\Plugin.ColorThief.WindowsPhone8\bin\Release\Plugin.ColorThief.xml" target="lib\wp8\Plugin.ColorThief.xml" />
+        <file src="Plugin.ColorThief\Plugin.ColorThief.WindowsPhone8\bin\Release\Plugin.ColorThief.pdb" target="lib\wp8\Plugin.ColorThief.pdb" />
+        <file src="Plugin.ColorThief\Plugin.ColorThief.Abstractions\bin\Release\Plugin.ColorThief.Abstractions.dll" target="lib\wp8\Plugin.ColorThief.Abstractions.dll" />
+        <file src="Plugin.ColorThief\Plugin.ColorThief.Abstractions\bin\Release\Plugin.ColorThief.Abstractions.xml" target="lib\wp8\Plugin.ColorThief.Abstractions.xml" />
+        <file src="Plugin.ColorThief\Plugin.ColorThief.Abstractions\bin\Release\Plugin.ColorThief.Abstractions.pdb" target="lib\wp8\Plugin.ColorThief.Abstractions.pdb" />-->
+
+    <!--Win Phone 81
+        <file src="Plugin.ColorThief\Plugin.ColorThief.WindowsPhone81\bin\Release\Plugin.ColorThief.dll" target="lib\wpa81\Plugin.ColorThief.dll" />
+        <file src="Plugin.ColorThief\Plugin.ColorThief.WindowsPhone81\bin\Release\Plugin.ColorThief.xml" target="lib\wpa81\Plugin.ColorThief.xml" />
+        <file src="Plugin.ColorThief\Plugin.ColorThief.WindowsPhone81\bin\Release\Plugin.ColorThief.pdb" target="lib\wpa81\Plugin.ColorThief.pdb" />
+        <file src="Plugin.ColorThief\Plugin.ColorThief.Abstractions\bin\Release\Plugin.ColorThief.Abstractions.dll" target="lib\wpa81\Plugin.ColorThief.Abstractions.dll" />
+        <file src="Plugin.ColorThief\Plugin.ColorThief.Abstractions\bin\Release\Plugin.ColorThief.Abstractions.xml" target="lib\wpa81\Plugin.ColorThief.Abstractions.xml" />
+        <file src="Plugin.ColorThief\Plugin.ColorThief.Abstractions\bin\Release\Plugin.ColorThief.Abstractions.pdb" target="lib\wpa81\Plugin.ColorThief.Abstractions.pdb" />-->
+
+    <!--WinStore
+        <file src="Plugin.ColorThief\Plugin.ColorThief.WindowsStore\bin\Release\Plugin.ColorThief.dll" target="lib\win8\Plugin.ColorThief.dll" />
+        <file src="Plugin.ColorThief\Plugin.ColorThief.WindowsStore\bin\Release\Plugin.ColorThief.xml" target="lib\win8\Plugin.ColorThief.xml" />
+        <file src="Plugin.ColorThief\Plugin.ColorThief.WindowsStore\bin\Release\Plugin.ColorThief.pdb" target="lib\win8\Plugin.ColorThief.pdb" />
+        <file src="Plugin.ColorThief\Plugin.ColorThief.Abstractions\bin\Release\Plugin.ColorThief.Abstractions.dll" target="lib\win8\Plugin.ColorThief.Abstractions.dll" />
+        <file src="Plugin.ColorThief\Plugin.ColorThief.Abstractions\bin\Release\Plugin.ColorThief.Abstractions.xml" target="lib\win8\Plugin.ColorThief.Abstractions.xml" />
+        <file src="Plugin.ColorThief\Plugin.ColorThief.Abstractions\bin\Release\Plugin.ColorThief.Abstractions.pdb" target="lib\win8\Plugin.ColorThief.Abstractions.pdb" />-->
+
+    <!--Xamarin.Android-->
+    <file src="Plugin.ColorThief\Plugin.ColorThief.Android\bin\Release\Plugin.ColorThief.dll" target="lib\MonoAndroid10\Plugin.ColorThief.dll" />
+    <file src="Plugin.ColorThief\Plugin.ColorThief.Android\bin\Release\Plugin.ColorThief.xml" target="lib\MonoAndroid10\Plugin.ColorThief.xml" />
+    <file src="Plugin.ColorThief\Plugin.ColorThief.Android\bin\Release\Plugin.ColorThief.pdb" target="lib\MonoAndroid10\Plugin.ColorThief.pdb" />
+    <file src="Plugin.ColorThief\Plugin.ColorThief.Abstractions\bin\Release\Plugin.ColorThief.Abstractions.dll" target="lib\MonoAndroid10\Plugin.ColorThief.Abstractions.dll" />
+    <file src="Plugin.ColorThief\Plugin.ColorThief.Abstractions\bin\Release\Plugin.ColorThief.Abstractions.xml" target="lib\MonoAndroid10\Plugin.ColorThief.Abstractions.xml" />
+    <file src="Plugin.ColorThief\Plugin.ColorThief.Abstractions\bin\Release\Plugin.ColorThief.Abstractions.pdb" target="lib\MonoAndroid10\Plugin.ColorThief.Abstractions.pdb" />
+
+    <!--Xamarin.iOS-->
+    <file src="Plugin.ColorThief\Plugin.ColorThief.iOS\bin\Release\Plugin.ColorThief.dll" target="lib\Xamarin.iOS10\Plugin.ColorThief.dll" />
+    <file src="Plugin.ColorThief\Plugin.ColorThief.iOS\bin\Release\Plugin.ColorThief.xml" target="lib\Xamarin.iOS10\Plugin.ColorThief.xml" />
+    <file src="Plugin.ColorThief\Plugin.ColorThief.Abstractions\bin\Release\Plugin.ColorThief.Abstractions.dll" target="lib\Xamarin.iOS10\Plugin.ColorThief.Abstractions.dll" />
+    <file src="Plugin.ColorThief\Plugin.ColorThief.Abstractions\bin\Release\Plugin.ColorThief.Abstractions.xml" target="lib\Xamarin.iOS10\Plugin.ColorThief.Abstractions.xml" />
+
+    <!--UWP-->
+    <file src="Plugin.ColorThief\Plugin.ColorThief.UWP\bin\Release\Plugin.ColorThief.dll" target="lib\UAP10\Plugin.ColorThief.dll" />
+    <file src="Plugin.ColorThief\Plugin.ColorThief.UWP\bin\Release\Plugin.ColorThief.xml" target="lib\UAP10\Plugin.ColorThief.xml" />
+    <file src="Plugin.ColorThief\Plugin.ColorThief.UWP\bin\Release\Plugin.ColorThief.pdb" target="lib\UAP10\Plugin.ColorThief.pdb" />
+    <file src="Plugin.ColorThief\Plugin.ColorThief.Abstractions\bin\Release\Plugin.ColorThief.Abstractions.dll" target="lib\UAP10\Plugin.ColorThief.Abstractions.dll" />
+    <file src="Plugin.ColorThief\Plugin.ColorThief.Abstractions\bin\Release\Plugin.ColorThief.Abstractions.xml" target="lib\UAP10\Plugin.ColorThief.Abstractions.xml" />
+    <file src="Plugin.ColorThief\Plugin.ColorThief.Abstractions\bin\Release\Plugin.ColorThief.Abstractions.pdb" target="lib\UAP10\Plugin.ColorThief.Abstractions.pdb" />
+
+    <!--Xamarin.Mac
+        <file src="Plugin.ColorThief\Plugin.ColorThief.Mac\bin\Release\Plugin.ColorThief.dll" target="lib\Xamarin.Mac20\Plugin.ColorThief.dll" />
+        <file src="Plugin.ColorThief\Plugin.ColorThief.Mac\bin\Release\Plugin.ColorThief.xml" target="lib\Xamarin.Mac20\Plugin.ColorThief.xml" />
+        <file src="Plugin.ColorThief\Plugin.ColorThief.Abstractions\bin\Release\Plugin.ColorThief.Abstractions.dll" target="lib\Xamarin.Mac20\Plugin.ColorThief.Abstractions.dll" />
+        <file src="Plugin.ColorThief\Plugin.ColorThief.Abstractions\bin\Release\Plugin.ColorThief.Abstractions.xml" target="lib\Xamarin.Mac20\Plugin.ColorThief.Abstractions.xml" />
+        -->
+  </files>
+</package>
