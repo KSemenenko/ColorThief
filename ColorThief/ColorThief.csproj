@@ -44,7 +44,7 @@
     <Compile Include="ColorThief.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <Import Project="..\ColorThieftShared\ColorThieftShared.projitems" Label="Shared" />
+  <Import Project="..\ColorThieft.Shared\ColorThieft.Shared.projitems" Label="Shared" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

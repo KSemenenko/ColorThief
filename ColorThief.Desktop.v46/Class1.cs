@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ColorThief.UWP
+namespace ColorThief.Desktop.v46
 {
     public class Class1
     {

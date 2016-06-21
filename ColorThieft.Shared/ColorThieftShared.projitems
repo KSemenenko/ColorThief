@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>fecb73a5-efa0-42f0-8b4b-22197a68d28a</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>ColorThieftShared</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)SharedAssemblyInfo.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)CMap.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Color.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)HslColor.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Mmcq.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)QuantizedColor.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)VBox.cs" />
+  </ItemGroup>
+</Project>
