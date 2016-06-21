@@ -39,6 +39,6 @@
     <Compile Include="ColorThief.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <Import Project="..\ColorThieft.Shared\ColorThieft.Shared.projitems" Label="Shared" />
+  <Import Project="..\ColorThieft.Shared\ColorThieftShared.projitems" Label="Shared" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
 </Project>

@@ -32,11 +32,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ColorThief.Desktop.v46", "C
 EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
-		ColorThieft.Shared\ColorThieft.Shared.projitems*{dcf18fee-040a-4a8f-83ac-056905a7b664}*SharedItemsImports = 4
-		ColorThieft.Shared\ColorThieft.Shared.projitems*{193dc806-8928-4edc-b739-94557ffc9089}*SharedItemsImports = 4
+		ColorThieft.Shared\ColorThieftShared.projitems*{53bc135e-85dc-49ad-812b-4682411bd3e3}*SharedItemsImports = 4
+		ColorThieft.Shared\ColorThieftShared.projitems*{dcf18fee-040a-4a8f-83ac-056905a7b664}*SharedItemsImports = 4
+		ColorThieft.Shared\ColorThieftShared.projitems*{1f4d8009-be26-4bf9-a085-4dc1c1930aa8}*SharedItemsImports = 4
+		ColorThieft.Shared\ColorThieftShared.projitems*{193dc806-8928-4edc-b739-94557ffc9089}*SharedItemsImports = 4
 		ColorThieft.Shared\ColorThieftShared.projitems*{fecb73a5-efa0-42f0-8b4b-22197a68d28a}*SharedItemsImports = 13
-		ColorThieft.Shared\ColorThieft.Shared.projitems*{20927f64-6f01-499e-9a3e-005def6d5284}*SharedItemsImports = 4
-		ColorThieft.Shared\ColorThieft.Shared.projitems*{d778f4be-e4bf-436d-b4a1-5de48a6f785f}*SharedItemsImports = 4
+		ColorThieft.Shared\ColorThieftShared.projitems*{20927f64-6f01-499e-9a3e-005def6d5284}*SharedItemsImports = 4
+		ColorThieft.Shared\ColorThieftShared.projitems*{d778f4be-e4bf-436d-b4a1-5de48a6f785f}*SharedItemsImports = 4
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Ad-Hoc|Any CPU = Ad-Hoc|Any CPU

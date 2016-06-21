@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
+using Windows.Graphics.Imaging;
+using Windows.UI.Xaml.Media.Imaging;
 
 namespace ColorThief
 {
@@ -22,9 +25,9 @@ namespace ColorThief
         /// </param>
         /// <param name="ignoreWhite">if set to <c>true</c> [ignore white].</param>
         /// <returns></returns>
-        public QuantizedColor GetColor(Bitmap sourceImage, int quality = DefaultQuality, bool ignoreWhite = DefaultIgnoreWhite)
+        public async Task<QuantizedColor> GetColor(BitmapDecoder sourceImage, int quality = DefaultQuality, bool ignoreWhite = DefaultIgnoreWhite)
         {
-            var palette = GetPalette(sourceImage, DefaultColorCount, quality, ignoreWhite);
+            var palette = await GetPalette(sourceImage, DefaultColorCount, quality, ignoreWhite);
             var dominantColor = palette.FirstOrDefault();
             return dominantColor;
         }
@@ -43,9 +46,9 @@ namespace ColorThief
         /// <param name="ignoreWhite">if set to <c>true</c> [ignore white].</param>
         /// <returns></returns>
         /// <code>true</code>
-        public List<QuantizedColor> GetPalette(Bitmap sourceImage, int colorCount = DefaultColorCount, int quality = DefaultQuality, bool ignoreWhite = DefaultIgnoreWhite)
+        public async Task<List<QuantizedColor>> GetPalette(BitmapDecoder sourceImage, int colorCount = DefaultColorCount, int quality = DefaultQuality, bool ignoreWhite = DefaultIgnoreWhite)
         {
-            var cmap = GetColorMap(sourceImage, colorCount, quality, ignoreWhite);
+            var cmap = await GetColorMap(sourceImage, colorCount, quality, ignoreWhite);
             return cmap != null ? cmap.GeneratePalette() : new List<QuantizedColor>();
         }
 
@@ -62,9 +65,9 @@ namespace ColorThief
         /// </param>
         /// <param name="ignoreWhite">if set to <c>true</c> [ignore white].</param>
         /// <returns></returns>
-        private CMap GetColorMap(Bitmap sourceImage, int colorCount, int quality = DefaultQuality, bool ignoreWhite = DefaultIgnoreWhite)
+        private async Task<CMap> GetColorMap(BitmapDecoder sourceImage, int colorCount, int quality = DefaultQuality, bool ignoreWhite = DefaultIgnoreWhite)
         {
-            var pixelArray = GetPixelsFast(sourceImage, quality, ignoreWhite);
+            var pixelArray = await GetPixelsFast(sourceImage, quality, ignoreWhite);
 
             // Send array to quantize function which clusters values using median
             // cut algorithm
@@ -72,31 +75,23 @@ namespace ColorThief
             return cmap;
         }
 
-        private IEnumerable<int> GetIntFromPixel(Bitmap bmp)
+        private async Task<byte[]> GetIntFromPixel(BitmapDecoder decoder)
         {
-            for(var x = 0; x < bmp.Width; x++)
-            {
-                for(var y = 0; y < bmp.Height; y++)
-                {
-                    var clr = bmp.GetPixel(x, y);
-                    yield return clr.B;
-                    yield return clr.G;
-                    yield return clr.R;
-                    yield return clr.A;
-                }
-            }
+            PixelDataProvider pixels = await decoder.GetPixelDataAsync(BitmapPixelFormat.Rgba16, BitmapAlphaMode.Premultiplied, new BitmapTransform(),
+                ExifOrientationMode.IgnoreExifOrientation, ColorManagementMode.DoNotColorManage);
+
+            return pixels.DetachPixelData();
         }
 
-        private int[][] GetPixelsFast(Bitmap sourceImage, int quality, bool ignoreWhite)
+        private async Task<int[][]> GetPixelsFast(BitmapDecoder sourceImage, int quality, bool ignoreWhite)
         {
-            var imageData = GetIntFromPixel(sourceImage);
-            var pixels = imageData.ToArray();
-            var pixelCount = sourceImage.Width * sourceImage.Height;
+            var pixels = await GetIntFromPixel(sourceImage);
+            var pixelCount = sourceImage.PixelWidth * sourceImage.PixelHeight;
 
             const int colorDepth = 4;
 
             var expectedDataLength = pixelCount * colorDepth;
-            if(expectedDataLength != pixels.Length)
+            if (expectedDataLength != pixels.Length)
             {
                 throw new ArgumentException("(expectedDataLength = "
                                             + expectedDataLength + ") != (pixels.length = "
@@ -114,18 +109,18 @@ namespace ColorThief
             var numUsedPixels = 0;
             var pixelArray = new int[numRegardedPixels][];
 
-            for(var i = 0; i < pixelCount; i += quality)
+            for (var i = 0; i < pixelCount; i += quality)
             {
                 var offset = i * 4;
-                var b = pixels[offset];
-                var g = pixels[offset + 1];
-                var r = pixels[offset + 2];
-                var a = pixels[offset + 3];
+                var b = (int)pixels[offset];
+                var g = (int)pixels[offset + 1];
+                var r = (int)pixels[offset + 2];
+                var a = (int)pixels[offset + 3];
 
                 // If pixel is mostly opaque and not white
-                if(a >= 125 && !(ignoreWhite && r > 250 && g > 250 && b > 250))
+                if (a >= 125 && !(ignoreWhite && r > 250 && g > 250 && b > 250))
                 {
-                    pixelArray[numUsedPixels] = new[] {r, g, b};
+                    pixelArray[numUsedPixels] = new[] { r, g, b };
                     numUsedPixels++;
                 }
             }

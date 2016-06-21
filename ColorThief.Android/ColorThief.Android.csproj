@@ -41,8 +41,6 @@
     <Reference Include="mscorlib" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="..\ColorThieft.Shared\SharedAssemblyInfo.cs">
@@ -51,7 +49,7 @@
     <Compile Include="ColorThief.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <Import Project="..\ColorThieft.Shared\ColorThieft.Shared.projitems" Label="Shared" />
+  <Import Project="..\ColorThieft.Shared\ColorThieftShared.projitems" Label="Shared" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

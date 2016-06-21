@@ -229,8 +229,7 @@ namespace ColorThief
                     partialsum[i] = total;
                 }
             }
-            else
-            /* maxw == bw */
+            else /* maxw == bw */
             {
                 for(i = vbox.B1; i <= vbox.B2; i++)
                 {
@@ -257,11 +256,8 @@ namespace ColorThief
             }
 
             // determine the cut planes
-            return maxw == rw
-                ? DoCut('r', vbox, partialsum, lookaheadsum, total)
-                : maxw == gw
-                    ? DoCut('g', vbox, partialsum, lookaheadsum, total)
-                    : DoCut('b', vbox, partialsum, lookaheadsum, total);
+            return maxw == rw ? DoCut('r', vbox, partialsum, lookaheadsum, total) : maxw == gw
+                    ? DoCut('g', vbox, partialsum, lookaheadsum, total) : DoCut('b', vbox, partialsum, lookaheadsum, total);
         }
 
         /// <summary>
@@ -286,6 +282,7 @@ namespace ColorThief
                     niters++;
                     continue;
                 }
+
                 lh.RemoveAt(lh.Count - 1);
 
                 // do the cut
@@ -358,8 +355,7 @@ namespace ColorThief
             return cmap;
         }
 
-        public static double CreateComparisonValue(double saturation, double targetSaturation, double luma, double targetLuma,
-            int population, int highestPopulation)
+        public static double CreateComparisonValue(double saturation, double targetSaturation, double luma, double targetLuma, int population, int highestPopulation)
         {
             return WeightedMean(InvertDiff(saturation, targetSaturation), WeightSaturation,
                 InvertDiff(luma, targetLuma), WeightLuma,

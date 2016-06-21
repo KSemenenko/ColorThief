@@ -116,7 +116,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Properties\ColorThief.UWP.rd.xml" />
   </ItemGroup>
-  <Import Project="..\ColorThieft.Shared\ColorThieft.Shared.projitems" Label="Shared" />
+  <Import Project="..\ColorThieft.Shared\ColorThieftShared.projitems" Label="Shared" />
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>

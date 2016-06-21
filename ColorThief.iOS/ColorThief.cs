@@ -1,6 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Drawing;
+using System.Runtime.InteropServices;
+using CoreGraphics;
+using UIKit;
 
 namespace ColorThief
 {
@@ -22,11 +26,11 @@ namespace ColorThief
         /// </param>
         /// <param name="ignoreWhite">if set to <c>true</c> [ignore white].</param>
         /// <returns></returns>
-        public QuantizedColor GetColor(Bitmap sourceImage, int quality = DefaultQuality, bool ignoreWhite = DefaultIgnoreWhite)
+        public QuantizedColor GetColor(UIImage sourceImage, int quality = DefaultQuality, bool ignoreWhite = DefaultIgnoreWhite)
         {
             var palette = GetPalette(sourceImage, DefaultColorCount, quality, ignoreWhite);
             var dominantColor = palette.FirstOrDefault();
-            return dominantColor;
+            return dominantColor; 
         }
 
         /// <summary>
@@ -43,7 +47,7 @@ namespace ColorThief
         /// <param name="ignoreWhite">if set to <c>true</c> [ignore white].</param>
         /// <returns></returns>
         /// <code>true</code>
-        public List<QuantizedColor> GetPalette(Bitmap sourceImage, int colorCount = DefaultColorCount, int quality = DefaultQuality, bool ignoreWhite = DefaultIgnoreWhite)
+        public List<QuantizedColor> GetPalette(UIImage sourceImage, int colorCount = DefaultColorCount, int quality = DefaultQuality, bool ignoreWhite = DefaultIgnoreWhite)
         {
             var cmap = GetColorMap(sourceImage, colorCount, quality, ignoreWhite);
             return cmap != null ? cmap.GeneratePalette() : new List<QuantizedColor>();
@@ -62,7 +66,7 @@ namespace ColorThief
         /// </param>
         /// <param name="ignoreWhite">if set to <c>true</c> [ignore white].</param>
         /// <returns></returns>
-        private CMap GetColorMap(Bitmap sourceImage, int colorCount, int quality = DefaultQuality, bool ignoreWhite = DefaultIgnoreWhite)
+        private CMap GetColorMap(UIImage sourceImage, int colorCount, int quality = DefaultQuality, bool ignoreWhite = DefaultIgnoreWhite)
         {
             var pixelArray = GetPixelsFast(sourceImage, quality, ignoreWhite);
 
@@ -72,31 +76,59 @@ namespace ColorThief
             return cmap;
         }
 
-        private IEnumerable<int> GetIntFromPixel(Bitmap bmp)
+        private IEnumerable<int> GetIntFromPixel(UIImage bmp)
         {
-            for(var x = 0; x < bmp.Width; x++)
+            for (var x = 0; x < bmp.Size.Width; x++)
             {
-                for(var y = 0; y < bmp.Height; y++)
+                for (var y = 0; y < bmp.Size.Height; y++)
                 {
-                    var clr = bmp.GetPixel(x, y);
-                    yield return clr.B;
-                    yield return clr.G;
-                    yield return clr.R;
-                    yield return clr.A;
+
+
+                    var rawData = new byte[4];
+                    var handle = GCHandle.Alloc(rawData);
+                    try
+                    {
+                        using (var colorSpace = CGColorSpace.CreateDeviceRGB())
+                        {
+                            using (var context = new CGBitmapContext(rawData, 1, 1, 8, 4, colorSpace, CGImageAlphaInfo.PremultipliedLast))
+                            {
+                                context.DrawImage(new RectangleF(-x, y - Convert.ToInt32(bmp.Size.Height), Convert.ToInt32(bmp.Size.Width), 
+                                    Convert.ToInt32(bmp.Size.Height)), bmp.CGImage);
+
+                                //float red = (rawData[0]) / 255.0f;
+                                //float green = (rawData[1]) / 255.0f;
+                                //float blue = (rawData[2]) / 255.0f;
+                                //float alpha = (rawData[3]) / 255.0f;
+
+                                yield return (int)rawData[2]; //B;
+                                yield return (int)rawData[1]; //G;
+                                yield return (int)rawData[0]; //R;
+                                yield return (int)rawData[3]; //A;
+
+                            }
+                        }
+                    }
+                    finally
+                    {
+                        handle.Free();
+                    }
+
                 }
             }
         }
 
-        private int[][] GetPixelsFast(Bitmap sourceImage, int quality, bool ignoreWhite)
+
+
+        private int[][] GetPixelsFast(UIImage sourceImage, int quality, bool ignoreWhite)
         {
             var imageData = GetIntFromPixel(sourceImage);
             var pixels = imageData.ToArray();
-            var pixelCount = sourceImage.Width * sourceImage.Height;
+            var pixelCount = sourceImage.Size.Width * sourceImage.Size.Height;
 
             const int colorDepth = 4;
 
             var expectedDataLength = pixelCount * colorDepth;
-            if(expectedDataLength != pixels.Length)
+            if (expectedDataLength != pixels.Length)
             {
                 throw new ArgumentException("(expectedDataLength = "
                                             + expectedDataLength + ") != (pixels.length = "
@@ -109,12 +141,12 @@ namespace ColorThief
             // numRegardedPixels must be rounded up to avoid an
             // ArrayIndexOutOfBoundsException if all pixels are good.
 
-            var numRegardedPixels = (quality <= 0) ? 0 : (pixelCount + quality - 1) / quality;
+            var numRegardedPixels = Convert.ToInt32((quality <= 0) ? 0 : (pixelCount + quality - 1) / quality);
 
             var numUsedPixels = 0;
             var pixelArray = new int[numRegardedPixels][];
 
-            for(var i = 0; i < pixelCount; i += quality)
+            for (var i = 0; i < pixelCount; i += quality)
             {
                 var offset = i * 4;
                 var b = pixels[offset];
@@ -123,9 +155,9 @@ namespace ColorThief
                 var a = pixels[offset + 3];
 
                 // If pixel is mostly opaque and not white
-                if(a >= 125 && !(ignoreWhite && r > 250 && g > 250 && b > 250))
+                if (a >= 125 && !(ignoreWhite && r > 250 && g > 250 && b > 250))
                 {
-                    pixelArray[numUsedPixels] = new[] {r, g, b};
+                    pixelArray[numUsedPixels] = new[] { r, g, b };
                     numUsedPixels++;
                 }
             }

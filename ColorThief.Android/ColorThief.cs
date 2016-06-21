@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Android.Graphics;
 
 namespace ColorThief
 {
@@ -74,15 +75,19 @@ namespace ColorThief
 
         private IEnumerable<int> GetIntFromPixel(Bitmap bmp)
         {
-            for(var x = 0; x < bmp.Width; x++)
+            for (var x = 0; x < bmp.Width; x++)
             {
-                for(var y = 0; y < bmp.Height; y++)
+                for (var y = 0; y < bmp.Height; y++)
                 {
-                    var clr = bmp.GetPixel(x, y);
-                    yield return clr.B;
-                    yield return clr.G;
-                    yield return clr.R;
-                    yield return clr.A;
+                    var clr = BitConverter.GetBytes(bmp.GetPixel(x, y));
+
+                    if (!BitConverter.IsLittleEndian)
+                        Array.Reverse(clr);
+
+                    yield return (int)clr[3]; //B;
+                    yield return (int)clr[2]; //G;
+                    yield return (int)clr[1]; //R;
+                    yield return (int)clr[0]; //A;
                 }
             }
         }
@@ -96,7 +101,7 @@ namespace ColorThief
             const int colorDepth = 4;
 
             var expectedDataLength = pixelCount * colorDepth;
-            if(expectedDataLength != pixels.Length)
+            if (expectedDataLength != pixels.Length)
             {
                 throw new ArgumentException("(expectedDataLength = "
                                             + expectedDataLength + ") != (pixels.length = "
@@ -114,7 +119,7 @@ namespace ColorThief
             var numUsedPixels = 0;
             var pixelArray = new int[numRegardedPixels][];
 
-            for(var i = 0; i < pixelCount; i += quality)
+            for (var i = 0; i < pixelCount; i += quality)
             {
                 var offset = i * 4;
                 var b = pixels[offset];
@@ -123,9 +128,9 @@ namespace ColorThief
                 var a = pixels[offset + 3];
 
                 // If pixel is mostly opaque and not white
-                if(a >= 125 && !(ignoreWhite && r > 250 && g > 250 && b > 250))
+                if (a >= 125 && !(ignoreWhite && r > 250 && g > 250 && b > 250))
                 {
-                    pixelArray[numUsedPixels] = new[] {r, g, b};
+                    pixelArray[numUsedPixels] = new[] { r, g, b };
                     numUsedPixels++;
                 }
             }
