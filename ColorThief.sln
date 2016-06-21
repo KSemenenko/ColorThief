@@ -26,6 +26,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ColorThief.Xamarin.Windows"
 EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "ColorThief.Xamarin", "ColorThief.Xamarin\ColorThief.Xamarin\ColorThief.Xamarin.shproj", "{7C771013-C077-4AB8-981D-0A6FE1A884AA}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{270268A9-7A39-42B8-BEEA-52A7E80B7DE2}"
+	ProjectSection(SolutionItems) = preProject
+		LICENSE = LICENSE
+		README.md = README.md
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		ColorThief.Xamarin\ColorThief.Xamarin\ColorThief.Xamarin.projitems*{7c771013-c077-4ab8-981d-0a6fe1a884aa}*SharedItemsImports = 13
