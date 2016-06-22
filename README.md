@@ -9,15 +9,15 @@ Many thanks for C# code [UWP Version](https://gist.github.com/zumicts/c5050a36e4
 ###Platforms:
 |Platform|Supported|Version|
 | ------------------- | :-----------: | :------------------: |
-|Xamarin.iOS|Yes|iOS 6+|
-|Xamarin.Android|Yes|API 10+|
-|Windows Phone 8|Yes|8.0+|
-|Windows Phone 8.1|Yes|8.1+|
-|Windows Store|Yes|8.1+|
-|Windows 10 UWP|Yes|10+|
+|Xamarin.iOS|Partial|iOS 6+|
+|Xamarin.Android|Partial|API 10+|
+|Windows Phone 8|Partial|8.0+|
+|Windows Phone 8.1|Partial|8.1+|
+|Windows Store|Partial|8.1+|
+|Windows 10 UWP|Partial|10+|
 |Xamarin.Mac|Partial||
-|.NET 4.5|Yes||
-|.NET 4.6|Yes||
+|Desktop .NET 4.5|Yes||
+|Desktop .NET 4.6|Yes||
 
 ##How to use
 

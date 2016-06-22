@@ -15,34 +15,26 @@
       A code for grabbing the color palette from an image. Uses C# and .NET to make it happen.
     </description>
     <summary> A code for grabbing the color palette from an image. Uses C# and .NET to make it happen.</summary>
-    <tags>ColorThief, Color, Thief, xamarin, pcl, plugin, plugin for xamarin, windows phone, uwp, winphone, wp8, winrt, android, xamarin.forms, ios, mac, version</tags>
+    <tags>ColorThief, Color, Thief, .net, xamarin, pcl, plugin, windows phone, uwp, winphone, wp8, winrt, android, xamarin.forms, ios, mac, version</tags>
     <dependencies>
     </dependencies>
   </metadata>
   <files>
-    <!--Portable-->
-    <file src="ColorThief.Portable\bin\Release\ColorThief.Portable.dll"
-          target="lib\portable-net45+wp8+win8\ColorThief.Portable.dll" />
-    <file src="ColorThief.Portable\bin\Release\ColorThief.Portable.xml"
-          target="lib\portable-net45+wp8+win8\ColorThief.Portable.xml" />
-    <file src="ColorThief.Portable\bin\Release\ColorThief.Portable.pdb"
-          target="lib\portable-net45+wp8+win8\ColorThief.Portable.pdb" />
+    <!--Portable
+    <file src="ColorThief.Portable\bin\Release\ColorThief.Portable.dll" target="lib\portable-net45+wp8+win8\ColorThief.Portable.dll" />
+    <file src="ColorThief.Portable\bin\Release\ColorThief.Portable.xml" target="lib\portable-net45+wp8+win8\ColorThief.Portable.xml" />
+    <file src="ColorThief.Portable\bin\Release\ColorThief.Portable.pdb" target="lib\portable-net45+wp8+win8\ColorThief.Portable.pdb" />-->
+    
 
     <!--ColorThief.Desktop.v45-->
-    <file src="ColorThief.Desktop.v45\bin\Release\ColorThief.Desktop.v45.dll"
-          target="lib\net45\ColorThief.Desktop.v45.dll" />
-    <file src="ColorThief.Desktop.v45\bin\Release\ColorThief.Desktop.v45.xml"
-          target="lib\net45\ColorThief.Desktop.v45.xml" />
-    <file src="ColorThief.Desktop.v45\bin\Release\ColorThief.Desktop.v45.pdb"
-          target="lib\net45\ColorThief.Desktop.v45.pdb" />
+    <file src="ColorThief.Desktop.v45\bin\Release\ColorThief.Desktop.v45.dll" target="lib\net45\ColorThief.Desktop.v45.dll" />
+    <file src="ColorThief.Desktop.v45\bin\Release\ColorThief.Desktop.v45.xml" target="lib\net45\ColorThief.Desktop.v45.xml" />
+    <file src="ColorThief.Desktop.v45\bin\Release\ColorThief.Desktop.v45.pdb" target="lib\net45\ColorThief.Desktop.v45.pdb" />
 
     <!--ColorThief.Desktop.v46-->
-    <file src="ColorThief.Desktop.v46\bin\Release\ColorThief.Desktop.v46.dll"
-          target="lib\net46\ColorThief.Desktop.v46.dll" />
-    <file src="ColorThief.Desktop.v46\bin\Release\ColorThief.Desktop.v46.xml"
-          target="lib\net46\ColorThief.Desktop.v46.xml" />
-    <file src="ColorThief.Desktop.v46\bin\Release\ColorThief.Desktop.v46.pdb"
-          target="lib\net46\ColorThief.Desktop.v46.pdb" />
+    <file src="ColorThief.Desktop.v46\bin\Release\ColorThief.Desktop.v46.dll" target="lib\net46\ColorThief.Desktop.v46.dll" />
+    <file src="ColorThief.Desktop.v46\bin\Release\ColorThief.Desktop.v46.xml" target="lib\net46\ColorThief.Desktop.v46.xml" />
+    <file src="ColorThief.Desktop.v46\bin\Release\ColorThief.Desktop.v46.pdb" target="lib\net46\ColorThief.Desktop.v46.pdb" />
 
     <!--Xamarin.Android-->
     <file src="ColorThief.Android\bin\Release\ColorThief.Android.dll" target="lib\MonoAndroid10\ColorThief.Android.dll" />
