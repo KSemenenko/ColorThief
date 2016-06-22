@@ -6,6 +6,9 @@ This is a ported project of [ColorThief](http://lokeshdhakar.com/projects/color-
 
 Many thanks for C# code [UWP Version](https://gist.github.com/zumicts/c5050a36e4ba742dc244)
 
+## Available at NuGet. 
+https://www.nuget.org/packages/ksemenenko.ColorThief/
+
 ###Platforms:
 |Platform|Supported|Version|
 | ------------------- | :-----------: | :------------------: |
