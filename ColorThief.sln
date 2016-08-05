@@ -49,6 +49,9 @@ Global
 		ColorThieft.Shared\ColorThieftShared.projitems*{20927f64-6f01-499e-9a3e-005def6d5284}*SharedItemsImports = 4
 		ColorTestApp\ColorTestApp\ColorTestApp.projitems*{487914fd-c237-49f7-abbe-1c96635577af}*SharedItemsImports = 13
 		ColorThieft.Shared\ColorThieftShared.projitems*{53bc135e-85dc-49ad-812b-4682411bd3e3}*SharedItemsImports = 4
+		ColorTestApp\ColorTestApp\ColorTestApp.projitems*{69dc3ae9-f01c-4ce4-b045-ef035a76e24e}*SharedItemsImports = 4
+		ColorTestApp\ColorTestApp\ColorTestApp.projitems*{8c8f2965-64a6-4506-a012-e829a2de8f53}*SharedItemsImports = 4
+		ColorTestApp\ColorTestApp\ColorTestApp.projitems*{ca63949b-e3af-4979-bda4-44df2c4c53e3}*SharedItemsImports = 4
 		ColorThieft.Shared\ColorThieftShared.projitems*{d778f4be-e4bf-436d-b4a1-5de48a6f785f}*SharedItemsImports = 4
 		ColorThieft.Shared\ColorThieftShared.projitems*{dcf18fee-040a-4a8f-83ac-056905a7b664}*SharedItemsImports = 4
 		ColorThieft.Shared\ColorThieftShared.projitems*{fecb73a5-efa0-42f0-8b4b-22197a68d28a}*SharedItemsImports = 13
@@ -543,10 +546,10 @@ Global
 		{DCF18FEE-040A-4A8F-83AC-056905A7B664} = {72BBB3BE-85C4-443A-927E-31DA4C931938}
 		{1F4D8009-BE26-4BF9-A085-4DC1C1930AA8} = {72BBB3BE-85C4-443A-927E-31DA4C931938}
 		{53BC135E-85DC-49AD-812B-4682411BD3E3} = {72BBB3BE-85C4-443A-927E-31DA4C931938}
+		{09D37433-1579-4CC3-8670-4C7BC66378A5} = {72BBB3BE-85C4-443A-927E-31DA4C931938}
 		{69DC3AE9-F01C-4CE4-B045-EF035A76E24E} = {1F207E55-8C72-43A2-84D0-8905826EE928}
 		{8C8F2965-64A6-4506-A012-E829A2DE8F53} = {1F207E55-8C72-43A2-84D0-8905826EE928}
 		{CA63949B-E3AF-4979-BDA4-44DF2C4C53E3} = {1F207E55-8C72-43A2-84D0-8905826EE928}
 		{487914FD-C237-49F7-ABBE-1C96635577AF} = {1F207E55-8C72-43A2-84D0-8905826EE928}
-		{09D37433-1579-4CC3-8670-4C7BC66378A5} = {72BBB3BE-85C4-443A-927E-31DA4C931938}
 	EndGlobalSection
 EndGlobal
