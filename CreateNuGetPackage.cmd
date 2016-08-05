@@ -1,0 +1,1 @@
+.\NuGet\nuget.exe pack GoogleAnalytics.nuspec
