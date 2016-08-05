@@ -2,7 +2,7 @@
 
 A code for grabbing the color palette from an image. Uses C# and .NET to make it happen.
 
-This is a ported project of [ColorThief](http://lokeshdhakar.com/projects/color-thief/) 
+### This is a ported project of [ColorThief](https://github.com/lokesh/color-thief/) 
 
 Many thanks for C# code [UWP Version](https://gist.github.com/zumicts/c5050a36e4ba742dc244)
 
