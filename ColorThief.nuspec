@@ -9,7 +9,7 @@
     <owners>ksemenenko</owners>
     <licenseUrl>https://github.com/KSemenenko/ColorThief/blob/master/LICENSE</licenseUrl>
     <projectUrl>https://github.com/KSemenenko/ColorThief</projectUrl>
-    <!--<iconUrl>https://github.com/KSemenenko/ColorThief/icons/plugin_icon_nuget.png</iconUrl>-->
+    <iconUrl>https://raw.githubusercontent.com/KSemenenko/ColorThief/master/icon.png</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>
       A code for grabbing the color palette from an image. Uses C# and .NET to make it happen.
