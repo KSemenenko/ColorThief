@@ -90,6 +90,11 @@ namespace ColorThief
 
         private int[][] GetPixelsFast(Bitmap sourceImage, int quality, bool ignoreWhite)
         {
+            if(quality < 1)
+            {
+                quality = DefaultQuality;
+            }
+
             var imageData = GetIntFromPixel(sourceImage);
             var pixels = imageData.ToArray();
             var pixelCount = sourceImage.Width * sourceImage.Height;

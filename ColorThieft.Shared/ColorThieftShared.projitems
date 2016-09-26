@@ -9,6 +9,7 @@
     <Import_RootNamespace>ColorThieftShared</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)IColorThiefBitmap.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SharedAssemblyInfo.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)CMap.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Color.cs" />
