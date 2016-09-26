@@ -11,6 +11,10 @@ namespace SpeedTest
     {
         static void Main(string[] args)
         {
+            var x = new TestClass();
+            x.Image1();
+            x.Image2();
+
             var summary = BenchmarkRunner.Run<TestClass>();
             Console.ReadLine();
         }
