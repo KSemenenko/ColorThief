@@ -1,1 +1,1 @@
-.\NuGet\nuget.exe pack GoogleAnalytics.nuspec
+.\NuGet\nuget.exe pack ColorThief.nuspec
