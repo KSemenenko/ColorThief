@@ -4,9 +4,9 @@ using Android.Graphics;
 using ColorThieftShared;
 using Java.Nio;
 
-namespace ColorThief.Android
+namespace ColorThief
 {
-    public class ColorThiefBitmap : IColorThiefBitmap<Bitmap>
+    public class ColorThiefBitmap : IColorThiefBitmap
     {
         private const byte bytesPerPixel = 4;
         private readonly int height;

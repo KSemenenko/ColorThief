@@ -4,9 +4,9 @@ using ColorThieftShared;
 using CoreGraphics;
 using UIKit;
 
-namespace ColorThief.iOS
+namespace ColorThief
 {
-    public class ColorThiefBitmap : IColorThiefBitmap<UIImage>
+    public class ColorThiefBitmap : IColorThiefBitmap
     {
         private const byte bitsPerComponent = 8;
         private const byte bytesPerPixel = 4;

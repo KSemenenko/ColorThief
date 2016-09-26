@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Drawing;
 using System.Runtime.InteropServices;
+using ColorThieftShared;
 using CoreGraphics;
 using UIKit;
 
@@ -13,6 +14,8 @@ namespace ColorThief
         private const int DefaultColorCount = 5;
         private const int DefaultQuality = 10;
         private const bool DefaultIgnoreWhite = true;
+
+       // private IColorThiefBitmap bitmapConverter = new ColorThiefBitmap();
 
         /// <summary>
         ///     Use the median cut algorithm to cluster similar colors and return the base color from the largest cluster.
