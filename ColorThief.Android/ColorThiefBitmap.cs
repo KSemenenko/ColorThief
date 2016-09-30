@@ -9,8 +9,9 @@ namespace ColorThief
     public class ColorThiefBitmap : IColorThiefBitmap
     {
         private const byte bytesPerPixel = 4;
-        private readonly int height;
-        private readonly int width;
+        public int Height { get; set; }
+        public int Width { get; set; }
+
         private Bitmap bitmap;
         private readonly string photoFile;
         private byte[] pixelData;
@@ -25,15 +26,15 @@ namespace ColorThief
 
             // Bitmap will be null because InJustDecodeBounds = true
             bitmap = BitmapFactory.DecodeFile(photoFile, options);
-            width = options.OutWidth;
-            height = options.OutHeight;
+            Width = options.OutWidth;
+            Height = options.OutHeight;
         }
 
         public byte[] ToPixelArray()
         {
             bitmap = BitmapFactory.DecodeFile(photoFile);
 
-            var size = width*height*bytesPerPixel;
+            var size = Width * Height * bytesPerPixel;
             pixelData = new byte[size];
             var byteBuffer = ByteBuffer.AllocateDirect(size);
             bitmap.CopyPixelsToBuffer(byteBuffer);
@@ -67,8 +68,8 @@ namespace ColorThief
 
         public Bitmap ToImage()
         {
-            var byteBuffer = ByteBuffer.AllocateDirect(width*height*bytesPerPixel);
-            Marshal.Copy(pixelData, 0, byteBuffer.GetDirectBufferAddress(), width*height*bytesPerPixel);
+            var byteBuffer = ByteBuffer.AllocateDirect(Width * Height * bytesPerPixel);
+            Marshal.Copy(pixelData, 0, byteBuffer.GetDirectBufferAddress(), Width * Height * bytesPerPixel);
             bitmap.CopyPixelsFromBuffer(byteBuffer);
             byteBuffer.Dispose();
             return bitmap;

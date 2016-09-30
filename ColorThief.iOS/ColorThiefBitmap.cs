@@ -10,8 +10,9 @@ namespace ColorThief
     {
         private const byte bitsPerComponent = 8;
         private const byte bytesPerPixel = 4;
-        private readonly int height;
-        private readonly int width;
+        public int Height { get; set; }
+        public int Width { get; set; }
+
         private UIImage image;
         private readonly UIImageOrientation orientation;
         private byte[] pixelData;
@@ -21,19 +22,19 @@ namespace ColorThief
         {
             image = uiImage;
             orientation = image.Orientation;
-            width = (int)image.CGImage.Width;
-            height = (int)image.CGImage.Height;
+            Width = (int)image.CGImage.Width;
+            Height = (int)image.CGImage.Height;
         }
 
         public byte[] ToPixelArray()
         {
             using(var colourSpace = CGColorSpace.CreateDeviceRGB())
             {
-                rawData = Marshal.AllocHGlobal(width*height*4);
-                using(var context = new CGBitmapContext(rawData, width, height, bitsPerComponent, bytesPerPixel*width, colourSpace, CGImageAlphaInfo.PremultipliedLast))
+                rawData = Marshal.AllocHGlobal(Width * Height * 4);
+                using(var context = new CGBitmapContext(rawData, Width, Height, bitsPerComponent, bytesPerPixel* Width, colourSpace, CGImageAlphaInfo.PremultipliedLast))
                 {
-                    context.DrawImage(new CGRect(0, 0, width, height), image.CGImage);
-                    pixelData = new byte[width*height*bytesPerPixel];
+                    context.DrawImage(new CGRect(0, 0, Width, Height), image.CGImage);
+                    pixelData = new byte[Width * Height * bytesPerPixel];
                     Marshal.Copy(rawData, pixelData, 0, pixelData.Length);
                     Marshal.FreeHGlobal(rawData);
 
@@ -71,7 +72,7 @@ namespace ColorThief
             {
                 using(var colourSpace = CGColorSpace.CreateDeviceRGB())
                 {
-                    using(var cgImage = new CGImage(width, height, bitsPerComponent, bitsPerComponent*bytesPerPixel, bytesPerPixel*width, colourSpace,
+                    using(var cgImage = new CGImage(Width, Height, bitsPerComponent, bitsPerComponent*bytesPerPixel, bytesPerPixel*Width, colourSpace,
                         CGBitmapFlags.ByteOrderDefault, dataProvider, null, false, CGColorRenderingIntent.Default))
                     {
                         image.Dispose();

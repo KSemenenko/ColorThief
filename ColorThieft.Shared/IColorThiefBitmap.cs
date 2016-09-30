@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace ColorThieftShared
+﻿namespace ColorThieftShared
 {
     public interface IColorThiefBitmap
     {
+        int Width { get; }
+        int Height { get; }
         byte[] ToPixelArray();
-
-        void TransformImage(Func<byte, byte, byte, double> pixelOperation);
     }
 }
