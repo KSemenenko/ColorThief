@@ -75,19 +75,21 @@ namespace ColorThief
 
         private IEnumerable<int> GetIntFromPixel(Bitmap bmp)
         {
-            for (var x = 0; x < bmp.Width; x++)
+            for(var x = 0; x < bmp.Width; x++)
             {
-                for (var y = 0; y < bmp.Height; y++)
+                for(var y = 0; y < bmp.Height; y++)
                 {
                     var clr = BitConverter.GetBytes(bmp.GetPixel(x, y));
 
-                    if (BitConverter.IsLittleEndian)
+                    if(BitConverter.IsLittleEndian)
+                    {
                         Array.Reverse(clr);
+                    }
 
-                    yield return (int)clr[3]; //B;
-                    yield return (int)clr[2]; //G;
-                    yield return (int)clr[1]; //R;
-                    yield return (int)clr[0]; //A;
+                    yield return clr[3]; //B;
+                    yield return clr[2]; //G;
+                    yield return clr[1]; //R;
+                    yield return clr[0]; //A;
                 }
             }
         }
@@ -96,12 +98,12 @@ namespace ColorThief
         {
             var imageData = GetIntFromPixel(sourceImage);
             var pixels = imageData.ToArray();
-            var pixelCount = sourceImage.Width * sourceImage.Height;
+            var pixelCount = sourceImage.Width*sourceImage.Height;
 
             const int colorDepth = 4;
 
-            var expectedDataLength = pixelCount * colorDepth;
-            if (expectedDataLength != pixels.Length)
+            var expectedDataLength = pixelCount*colorDepth;
+            if(expectedDataLength != pixels.Length)
             {
                 throw new ArgumentException("(expectedDataLength = "
                                             + expectedDataLength + ") != (pixels.length = "
@@ -114,23 +116,23 @@ namespace ColorThief
             // numRegardedPixels must be rounded up to avoid an
             // ArrayIndexOutOfBoundsException if all pixels are good.
 
-            var numRegardedPixels = (quality <= 0) ? 0 : (pixelCount + quality - 1) / quality;
+            var numRegardedPixels = quality <= 0 ? 0 : (pixelCount + quality - 1)/quality;
 
             var numUsedPixels = 0;
             var pixelArray = new int[numRegardedPixels][];
 
-            for (var i = 0; i < pixelCount; i += quality)
+            for(var i = 0; i < pixelCount; i += quality)
             {
-                var offset = i * 4;
+                var offset = i*4;
                 var b = pixels[offset];
                 var g = pixels[offset + 1];
                 var r = pixels[offset + 2];
                 var a = pixels[offset + 3];
 
                 // If pixel is mostly opaque and not white
-                if (a >= 125 && !(ignoreWhite && r > 250 && g > 250 && b > 250))
+                if(a >= 125 && !(ignoreWhite && r > 250 && g > 250 && b > 250))
                 {
-                    pixelArray[numUsedPixels] = new[] { r, g, b };
+                    pixelArray[numUsedPixels] = new[] {r, g, b};
                     numUsedPixels++;
                 }
             }

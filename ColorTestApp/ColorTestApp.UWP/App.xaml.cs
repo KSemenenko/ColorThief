@@ -3,10 +3,14 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Threading.Tasks;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.Graphics.Imaging;
+using Windows.Storage;
+using Windows.Storage.Streams;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -14,6 +18,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using Plugin.Media.Abstractions;
 
 namespace ColorTestApp.UWP
 {
@@ -102,6 +107,21 @@ namespace ColorTestApp.UWP
             var deferral = e.SuspendingOperation.GetDeferral();
             //TODO: Save application state and stop any background activity
             deferral.Complete();
+        }
+
+        private async Task UWP(MediaFile file)
+        {
+            StorageFile inputFile = await StorageFile.GetFileFromPathAsync(file.Path);
+
+            using (IRandomAccessStream stream = await inputFile.OpenAsync(FileAccessMode.Read))
+            {
+                BitmapDecoder decoder = await BitmapDecoder.CreateAsync(stream);
+                ColorThief.ColorThief ct = new ColorThief.ColorThief();
+                var xxxx = ct.GetColor(decoder);
+                int a = 5;
+            }
+
+
         }
     }
 }

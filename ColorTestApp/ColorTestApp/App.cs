@@ -1,9 +1,15 @@
 ﻿using System;
 using System.Diagnostics;
 using System.IO;
+using System.Threading.Tasks;
 using Plugin.Media;
 using Plugin.Media.Abstractions;
 using Xamarin.Forms;
+#if WINDOWS_UWP
+using Windows.Graphics.Imaging;
+using Windows.Storage;
+using Windows.Storage.Streams;
+#endif
 
 
 namespace ColorTestApp
@@ -11,7 +17,7 @@ namespace ColorTestApp
     //http://stackoverflow.com/questions/28123300/xamarin-forms-c-sharp-find-dominant-color-of-image-or-image-byte-array
     //http://stackoverflow.com/questions/7807360/how-to-get-pixel-colour-in-android
 
-    public class App : Application
+    public class App : Xamarin.Forms.Application
     {
         public App ()
         {
@@ -50,9 +56,7 @@ namespace ColorTestApp
                     return stream;
                 });
 
-               
-
-
+           
 
 #if ANDROID
 
@@ -61,6 +65,9 @@ namespace ColorTestApp
                 ColorThief.ColorThief ct = new ColorThief.ColorThief();
                 var xxxx = ct.GetColor(bitmap1);
                 int a = 5;
+#elif WINDOWS_UWP
+
+                UWP(file);
 #endif
 
             };
@@ -81,6 +88,26 @@ namespace ColorTestApp
             };
         }
 
+#if WINDOWS_UWP
+         private async Task UWP(MediaFile file)
+        {
+            try
+            {
+
+                using (IRandomAccessStream stream = file.GetStream().AsRandomAccessStream())
+                {
+                    BitmapDecoder decoder = await BitmapDecoder.CreateAsync(stream);
+                    ColorThief.ColorThief ct = new ColorThief.ColorThief();
+                    var xxxx = await ct.GetColor(decoder);
+                    int a = 5;
+                }
+            }
+            catch (Exception ex)
+            {
+                int a = 5;
+            }
+}
+#endif
 
         public static byte[] ReadFully(Stream input)
         {
