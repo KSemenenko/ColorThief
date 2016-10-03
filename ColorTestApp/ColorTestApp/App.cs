@@ -1,7 +1,10 @@
 ﻿using System;
+using System.Diagnostics;
+using System.IO;
 using Plugin.Media;
 using Plugin.Media.Abstractions;
 using Xamarin.Forms;
+
 
 namespace ColorTestApp
 {
@@ -21,7 +24,7 @@ namespace ColorTestApp
             {
                 MediaFile file;
 
-                if (!CrossMedia.Current.IsCameraAvailable || !CrossMedia.Current.IsTakePhotoSupported)
+                if(!CrossMedia.Current.IsCameraAvailable || !CrossMedia.Current.IsTakePhotoSupported)
                 {
                     file = await CrossMedia.Current.PickPhotoAsync();
                 }
@@ -33,22 +36,32 @@ namespace ColorTestApp
                         Name = "test.jpg"
                     });
                 }
-               
 
-                if (file == null)
+
+                if(file == null)
                     return;
 
+               
 
                 image.Source = ImageSource.FromStream(() =>
                 {
                     var stream = file.GetStream();
-                    file.Dispose();
+                    //file.Dispose();
                     return stream;
                 });
 
+               
 
-               // ColorThief.ColorThief ct = new ColorThief.ColorThief();
-              
+
+
+#if ANDROID
+
+                var bitmap1 = Android.Graphics.BitmapFactory.DecodeStream(file.GetStream());
+                //var bitmap1 = Android.Graphics.BitmapFactory.DecodeFile(file.Path);
+                ColorThief.ColorThief ct = new ColorThief.ColorThief();
+                var xxxx = ct.GetColor(bitmap1);
+                int a = 5;
+#endif
 
             };
 
@@ -67,6 +80,23 @@ namespace ColorTestApp
                 }
             };
         }
+
+
+        public static byte[] ReadFully(Stream input)
+        {
+            byte[] buffer = new byte[16*1024];
+            using(MemoryStream ms = new MemoryStream())
+            {
+                int read;
+                while((read = input.Read(buffer, 0, buffer.Length)) > 0)
+                {
+                    ms.Write(buffer, 0, read);
+                }
+                return ms.ToArray();
+            }
+        }
+
+
 
         protected override void OnStart ()
         {

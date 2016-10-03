@@ -7,7 +7,7 @@ using Plugin.CurrentActivity;
 
 namespace ColorTestApp.Droid
 {
-	//You can specify additional application information in this attribute
+    //You can specify additional application information in this attribute
     [Application]
     public class MainApplication : Application, Application.IActivityLifecycleCallbacks
     {
@@ -36,6 +36,7 @@ namespace ColorTestApp.Droid
 
         public void OnActivityDestroyed(Activity activity)
         {
+
         }
 
         public void OnActivityPaused(Activity activity)

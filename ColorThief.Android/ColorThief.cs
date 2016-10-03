@@ -81,7 +81,7 @@ namespace ColorThief
                 {
                     var clr = BitConverter.GetBytes(bmp.GetPixel(x, y));
 
-                    if (!BitConverter.IsLittleEndian)
+                    if (BitConverter.IsLittleEndian)
                         Array.Reverse(clr);
 
                     yield return (int)clr[3]; //B;

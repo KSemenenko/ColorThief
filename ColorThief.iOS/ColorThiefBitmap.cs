@@ -6,7 +6,7 @@ using UIKit;
 
 namespace ColorThief
 {
-    public class ColorThiefBitmap : IColorThiefBitmap
+    public class ColorThiefBitmap //: IColorThiefBitmap
     {
         private const byte bitsPerComponent = 8;
         private const byte bytesPerPixel = 4;

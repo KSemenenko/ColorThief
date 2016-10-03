@@ -1,9 +1,11 @@
-﻿namespace ColorThieftShared
+﻿using System.IO;
+
+namespace ColorThieftShared
 {
     public interface IColorThiefBitmap
     {
         int Width { get; }
         int Height { get; }
-        byte[] ToPixelArray();
+        int[] ToPixelArray();
     }
 }
