@@ -16,7 +16,7 @@ namespace ColorThief
         /// </summary>
         /// <param name="sourceImage">The source image.</param>
         /// <param name="quality">
-        ///     0 is the highest quality settings. 10 is the default. There is
+        ///     1 is the highest quality settings. 10 is the default. There is
         ///     a trade-off between quality and speed. The bigger the number,
         ///     the faster a color will be returned but the greater the
         ///     likelihood that it will not be the visually most dominant color.
@@ -36,7 +36,7 @@ namespace ColorThief
         /// <param name="sourceImage">The source image.</param>
         /// <param name="colorCount">The color count.</param>
         /// <param name="quality">
-        ///     0 is the highest quality settings. 10 is the default. There is
+        ///     1 is the highest quality settings. 10 is the default. There is
         ///     a trade-off between quality and speed. The bigger the number,
         ///     the faster a color will be returned but the greater the
         ///     likelihood that it will not be the visually most dominant color.
@@ -56,7 +56,7 @@ namespace ColorThief
         /// <param name="sourceImage">The source image.</param>
         /// <param name="colorCount">The color count.</param>
         /// <param name="quality">
-        ///     0 is the highest quality settings. 10 is the default. There is
+        ///     1 is the highest quality settings. 10 is the default. There is
         ///     a trade-off between quality and speed. The bigger the number,
         ///     the faster a color will be returned but the greater the
         ///     likelihood that it will not be the visually most dominant color.
@@ -90,7 +90,7 @@ namespace ColorThief
 
         private int[][] GetPixelsFast(Bitmap sourceImage, int quality, bool ignoreWhite)
         {
-            if(quality < 1)
+            if (quality < 1)
             {
                 quality = DefaultQuality;
             }
@@ -115,7 +115,7 @@ namespace ColorThief
             // numRegardedPixels must be rounded up to avoid an
             // ArrayIndexOutOfBoundsException if all pixels are good.
 
-            var numRegardedPixels = (quality <= 0) ? 0 : (pixelCount + quality - 1) / quality;
+            var numRegardedPixels = (pixelCount + quality - 1) / quality;
 
             var numUsedPixels = 0;
             var pixelArray = new int[numRegardedPixels][];
