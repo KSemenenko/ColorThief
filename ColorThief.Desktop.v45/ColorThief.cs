@@ -90,7 +90,7 @@ namespace ColorThief
 
         private int[][] GetPixelsFast(Bitmap sourceImage, int quality, bool ignoreWhite)
         {
-            if (quality < 1)
+            if(quality < 1)
             {
                 quality = DefaultQuality;
             }
