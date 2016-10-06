@@ -11,4 +11,8 @@
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)App.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)test1.jpg" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)test2.jpg" />
+  </ItemGroup>
 </Project>

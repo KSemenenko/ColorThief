@@ -28,7 +28,7 @@ namespace ColorThief
         /// </summary>
         /// <param name="pixels">The pixels.</param>
         /// <returns>Histo (1-d array, giving the number of pixels in each quantized region of color space), or null on error.</returns>
-        private static int[] GetHisto(IEnumerable<int[]> pixels)
+        private static int[] GetHisto(IEnumerable<byte[]> pixels)
         {
             var histo = new int[Histosize];
 
@@ -43,7 +43,7 @@ namespace ColorThief
             return histo;
         }
 
-        private static VBox VboxFromPixels(IList<int[]> pixels, int[] histo)
+        private static VBox VboxFromPixels(IList<byte[]> pixels, int[] histo)
         {
             int rmin = 1000000, rmax = 0;
             int gmin = 1000000, gmax = 0;
@@ -315,7 +315,7 @@ namespace ColorThief
             }
         }
 
-        public static CMap Quantize(int[][] pixels, int maxcolors)
+        public static CMap Quantize(byte[][] pixels, int maxcolors)
         {
             // short-circuit
             if(pixels.Length == 0 || maxcolors < 2 || maxcolors > 256)

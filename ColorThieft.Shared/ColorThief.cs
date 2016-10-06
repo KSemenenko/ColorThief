@@ -14,7 +14,7 @@ namespace ColorThief
         /// <param name="pixelArray">Pixel array.</param>
         /// <param name="colorCount">The color count.</param>
         /// <returns></returns>
-        private CMap GetColorMap(int[][] pixelArray, int colorCount)
+        private CMap GetColorMap(byte[][] pixelArray, int colorCount)
         {
             // Send array to quantize function which clusters values using median
             // cut algorithm
@@ -22,7 +22,7 @@ namespace ColorThief
             return cmap;
         }
 
-        private int[][] ConvertPixels(int[] pixels, int pixelCount, int quality, bool ignoreWhite)
+        private byte[][] ConvertPixels(byte[] pixels, int pixelCount, int quality, bool ignoreWhite)
         {
             const int colorDepth = 4;
 
@@ -43,7 +43,7 @@ namespace ColorThief
             var numRegardedPixels = (pixelCount + quality - 1)/quality;
 
             var numUsedPixels = 0;
-            var pixelArray = new int[numRegardedPixels][];
+            var pixelArray = new byte[numRegardedPixels][];
 
             for(var i = 0; i < pixelCount; i += quality)
             {
@@ -62,7 +62,7 @@ namespace ColorThief
             }
 
             // Remove unused pixels from the array
-            var copy = new int[numUsedPixels][];
+            var copy = new byte[numUsedPixels][];
             Array.Copy(pixelArray, copy, numUsedPixels);
             return copy;
         }

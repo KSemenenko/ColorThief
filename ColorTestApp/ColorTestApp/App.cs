@@ -17,6 +17,16 @@ namespace ColorTestApp
 
     public class App : Application
     {
+#if __IOS__
+        public static string ResourcePrefix = "ColorTestApp.iOS.";
+#endif
+#if ANDROID
+        public static string ResourcePrefix = "ColorTestApp.Droid.";
+#endif
+#if WINDOWS_UWP
+        public static string ResourcePrefix = "ColorTestApp.UWP.";
+#endif
+
         public App()
         {
             // The root page of your application
@@ -105,33 +115,5 @@ namespace ColorTestApp
         }
 #endif
 
-        public static byte[] ReadFully(Stream input)
-        {
-            var buffer = new byte[16*1024];
-            using(var ms = new MemoryStream())
-            {
-                int read;
-                while((read = input.Read(buffer, 0, buffer.Length)) > 0)
-                {
-                    ms.Write(buffer, 0, read);
-                }
-                return ms.ToArray();
-            }
-        }
-
-        protected override void OnStart()
-        {
-            // Handle when your app starts
-        }
-
-        protected override void OnSleep()
-        {
-            // Handle when your app sleeps
-        }
-
-        protected override void OnResume()
-        {
-            // Handle when your app resumes
-        }
     }
 }

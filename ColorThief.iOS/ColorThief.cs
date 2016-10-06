@@ -50,7 +50,7 @@ namespace ColorThief
             return cmap != null ? cmap.GeneratePalette() : new List<QuantizedColor>();
         }
 
-        private IEnumerable<int> GetIntFromPixel(UIImage bmp)
+        private byte[] GetIntFromPixel(UIImage bmp)
         {
             using(var colourSpace = CGColorSpace.CreateDeviceRGB())
             {
@@ -62,23 +62,18 @@ namespace ColorThief
                     Marshal.Copy(rawData, pixelData, 0, pixelData.Length);
                     Marshal.FreeHGlobal(rawData);
 
-                    foreach(var item in pixelData)
-                    {
-                        yield return item;
-                    }
+                    return pixelData;
                 }
             }
         }
 
-        private int[][] GetPixelsFast(UIImage sourceImage, int quality, bool ignoreWhite)
+        private byte[][] GetPixelsFast(UIImage sourceImage, int quality, bool ignoreWhite)
         {
             if(quality < 1)
             {
                 quality = DefaultQuality;
             }
-
-            var imageData = GetIntFromPixel(sourceImage);
-            var pixels = imageData.ToArray();
+            var pixels = GetIntFromPixel(sourceImage);
             var pixelCount = (int)sourceImage.Size.Width*(int)sourceImage.Size.Height;
 
             return ConvertPixels(pixels, pixelCount, quality, ignoreWhite);

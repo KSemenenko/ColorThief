@@ -48,15 +48,14 @@ namespace ColorThief
             return cmap != null ? cmap.GeneratePalette() : new List<QuantizedColor>();
         }
 
-        private async Task<int[]> GetIntFromPixel(BitmapDecoder decoder)
+        private async Task<byte[]> GetIntFromPixel(BitmapDecoder decoder)
         {
             var pixelsData = await decoder.GetPixelDataAsync();
             var pixels = pixelsData.DetachPixelData();
-            var intList = new List<int>(pixels.Select(item => (int)item));
-            return intList.ToArray();
+            return pixels;
         }
 
-        private async Task<int[][]> GetPixelsFast(BitmapDecoder sourceImage, int quality, bool ignoreWhite)
+        private async Task<byte[][]> GetPixelsFast(BitmapDecoder sourceImage, int quality, bool ignoreWhite)
         {
             if(quality < 1)
             {

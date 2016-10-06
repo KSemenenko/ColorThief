@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace ColorThief
 {
@@ -47,33 +49,45 @@ namespace ColorThief
             return cmap != null ? cmap.GeneratePalette() : new List<QuantizedColor>();
         }
 
-        private int[][] GetPixelsFast(Bitmap sourceImage, int quality, bool ignoreWhite)
+        private byte[][] GetPixelsFast(Bitmap sourceImage, int quality, bool ignoreWhite)
         {
             if(quality < 1)
             {
                 quality = DefaultQuality;
             }
 
-            var imageData = GetIntFromPixel(sourceImage);
-            var pixels = imageData.ToArray();
+            var pixels = GetIntFromPixel(sourceImage);
             var pixelCount = sourceImage.Width*sourceImage.Height;
 
             return ConvertPixels(pixels, pixelCount, quality, ignoreWhite);
         }
 
-        private IEnumerable<int> GetIntFromPixel(Bitmap bmp)
+        private byte[] GetIntFromPixel(Bitmap bmp)
         {
-            for(var x = 0; x < bmp.Width; x++)
+            var pixelList = new byte[bmp.Width * bmp.Height * 4];
+            int count = 0;
+
+            for (var x = 0; x < bmp.Width; x++)
             {
-                for(var y = 0; y < bmp.Height; y++)
+                for (var y = 0; y < bmp.Height; y++)
                 {
                     var clr = bmp.GetPixel(x, y);
-                    yield return clr.B;
-                    yield return clr.G;
-                    yield return clr.R;
-                    yield return clr.A;
+
+                    pixelList[count] = clr.B;
+                    count++;
+
+                    pixelList[count] = clr.G;
+                    count++;
+
+                    pixelList[count] = clr.R;
+                    count++;
+
+                    pixelList[count] = clr.A;
+                    count++;
                 }
             }
+
+            return pixelList;
         }
     }
 }

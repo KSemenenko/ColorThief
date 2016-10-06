@@ -47,36 +47,43 @@ namespace ColorThief
             return cmap != null ? cmap.GeneratePalette() : new List<QuantizedColor>();
         }
 
-        private IEnumerable<int> GetIntFromPixel(Bitmap bmp)
+        private byte[] GetIntFromPixel(Bitmap bmp)
         {
-            for(var x = 0; x < bmp.Width; x++)
+            var pixelList = new byte[bmp.Width * bmp.Height * 4];
+            int count = 0;
+
+            for (var x = 0; x < bmp.Width; x++)
             {
-                for(var y = 0; y < bmp.Height; y++)
+                for (var y = 0; y < bmp.Height; y++)
                 {
                     var clr = BitConverter.GetBytes(bmp.GetPixel(x, y));
 
-                    if(BitConverter.IsLittleEndian)
-                    {
-                        Array.Reverse(clr);
-                    }
+                    pixelList[count] = clr[3];
+                    count++;
 
-                    yield return clr[3]; //B;
-                    yield return clr[2]; //G;
-                    yield return clr[1]; //R;
-                    yield return clr[0]; //A;
+                    pixelList[count] = clr[2];
+                    count++;
+
+                    pixelList[count] = clr[1];
+                    count++;
+
+                    pixelList[count] = clr[0];
+                    count++;
                 }
             }
+
+            return pixelList;
         }
 
-        private int[][] GetPixelsFast(Bitmap sourceImage, int quality, bool ignoreWhite)
+
+        private byte[][] GetPixelsFast(Bitmap sourceImage, int quality, bool ignoreWhite)
         {
             if(quality < 1)
             {
                 quality = DefaultQuality;
             }
 
-            var imageData = GetIntFromPixel(sourceImage);
-            var pixels = imageData.ToArray();
+            var pixels = GetIntFromPixel(sourceImage);
             var pixelCount = sourceImage.Width*sourceImage.Height;
 
             return ConvertPixels(pixels, pixelCount, quality, ignoreWhite);
