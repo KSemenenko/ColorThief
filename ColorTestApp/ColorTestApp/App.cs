@@ -1,4 +1,5 @@
-﻿using Android.Graphics;
+﻿using System;
+using Android.Graphics;
 using Plugin.Media;
 using Plugin.Media.Abstractions;
 using Xamarin.Forms;
@@ -70,18 +71,18 @@ namespace ColorTestApp
                 var bitmap1 = BitmapFactory.DecodeStream(file.GetStream());
                 //var bitmap1 = Android.Graphics.BitmapFactory.DecodeFile(file.Path);
                 var ct = new ColorThief.ColorThief();
-                var xxxx = ct.GetColor(bitmap1);
-                takePhoto.BackgroundColor = new Color(xxxx.Color.R, xxxx.Color.G, xxxx.Color.B);
+                var ctColor = ct.GetColor(bitmap1);               
+                MainPage.BackgroundColor = Color.FromHex(ctColor.Color.ToHexString());
                 var a = 5;
 #elif WINDOWS_UWP
 
-                UWP(file, takePhoto);
+                UWP(file);
 #elif __IOS__
 
                 var bitmap1 = UIImage.FromFile(file.Path);
                 ColorThief.ColorThief ct = new ColorThief.ColorThief();
-                var xxxx = ct.GetColor(bitmap1);
-                takePhoto.BackgroundColor = new Color(xxxx.Color.R, xxxx.Color.G, xxxx.Color.B);
+                var ctColor = ct.GetColor(bitmap1);
+                MainPage.BackgroundColor = Color.FromHex(ctColor.Color.ToHexString());
                 int a = 5;
 #endif
             };
@@ -103,10 +104,11 @@ namespace ColorTestApp
                     }
                 }
             };
+
         }
 
 #if WINDOWS_UWP
-        private async Task UWP(MediaFile file, Button tk)
+        private async Task UWP(MediaFile file)
         {
             try
             {
@@ -114,8 +116,8 @@ namespace ColorTestApp
                 {
                     var decoder = await BitmapDecoder.CreateAsync(stream);
                     var ct = new ColorThief.ColorThief();
-                    var xxxx = await ct.GetColor(decoder);
-                    tk.BackgroundColor = new Color(xxxx.Color.R, xxxx.Color.G, xxxx.Color.B);
+                    var ctColor = await ct.GetColor(decoder);
+                    MainPage.BackgroundColor = Color.FromHex(ctColor.Color.ToHexString());
                     var a = 5;
                 }
             }
