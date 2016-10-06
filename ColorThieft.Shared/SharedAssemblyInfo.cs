@@ -10,6 +10,7 @@
 [assembly: AssemblyProduct("ColorThief.NET")]
 [assembly: AssemblyCopyright("Copyright © K.Semenenko 2016")]
 [assembly: AssemblyCulture("")]
+[assembly: AssemblyTrademark("")]
 
 // Version information for an assembly consists of the following four values:
 //

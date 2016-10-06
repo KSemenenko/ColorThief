@@ -24,49 +24,34 @@
   <files>
 
     <!--Portable Profile259 -->
-    <file src="ColorThief.Portable\bin\Release\ColorThief.Portable.dll" target="lib\portable-net45+win8+wpa81+wp8\ColorThief.Portable.dll" />
-    <file src="ColorThief.Portable\bin\Release\ColorThief.Portable.xml" target="lib\portable-net45+win8+wpa81+wp8\ColorThief.Portable.xml" />
-    <file src="ColorThief.Portable\bin\Release\ColorThief.Portable.pdb" target="lib\portable-net45+win8+wpa81+wp8\ColorThief.Portable.pdb" />
+    <file src="ColorThief.Forms\bin\Release\ColorThief.Forms.dll" target="lib\portable-net45+win8+wpa81+wp8\ColorThief.Forms.dll" />
+    <file src="ColorThief.Forms\bin\Release\ColorThief.Forms.xml" target="lib\portable-net45+win8+wpa81+wp8\ColorThief.Forms.xml" />
+    <file src="ColorThief.Forms\bin\Release\ColorThief.Forms.pdb" target="lib\portable-net45+win8+wpa81+wp8\ColorThief.Forms.pdb" />
     
     <!--Portable Profile111 -->
-    <file src="ColorThief.Portable\bin\Release\ColorThief.Portable.dll" target="lib\portable-net45+win8+wpa81\ColorThief.Portable.dll" />
-    <file src="ColorThief.Portable\bin\Release\ColorThief.Portable.xml" target="lib\portable-net45+win8+wpa818\ColorThief.Portable.xml" />
-    <file src="ColorThief.Portable\bin\Release\ColorThief.Portable.pdb" target="lib\portable-net45+win8+wpa81\ColorThief.Portable.pdb" />
+    <file src="ColorThief.Forms\bin\Release\ColorThief.Forms.dll" target="lib\portable-net45+win8+wpa81\ColorThief.Forms.dll" />
+    <file src="ColorThief.Forms\bin\Release\ColorThief.Forms.xml" target="lib\portable-net45+win8+wpa818\ColorThief.Forms.xml" />
+    <file src="ColorThief.Forms\bin\Release\ColorThief.Forms.pdb" target="lib\portable-net45+win8+wpa81\ColorThief.Forms.pdb" />
     
     <!--Portable Profile78 -->
-    <file src="ColorThief.Portable\bin\Release\ColorThief.Portable.dll" target="lib\portable-net45+win8+wp8\ColorThief.Portable.dll" />
-    <file src="ColorThief.Portable\bin\Release\ColorThief.Portable.xml" target="lib\portable-net45+win8+wp8\ColorThief.Portable.xml" />
-    <file src="ColorThief.Portable\bin\Release\ColorThief.Portable.pdb" target="lib\portable-net45+win8+wp8\ColorThief.Portable.pdb" />
-
-    <!--ColorThief.Desktop.v45-->
-    <file src="ColorThief.Desktop.v45\bin\Release\ColorThief.Desktop.v45.dll" target="lib\net45\ColorThief.Desktop.v45.dll" />
-    <file src="ColorThief.Desktop.v45\bin\Release\ColorThief.Desktop.v45.xml" target="lib\net45\ColorThief.Desktop.v45.xml" />
-    <file src="ColorThief.Desktop.v45\bin\Release\ColorThief.Desktop.v45.pdb" target="lib\net45\ColorThief.Desktop.v45.pdb" />
-
-    <!--ColorThief.Desktop.v46-->
-    <file src="ColorThief.Desktop.v46\bin\Release\ColorThief.Desktop.v46.dll" target="lib\net46\ColorThief.Desktop.v46.dll" />
-    <file src="ColorThief.Desktop.v46\bin\Release\ColorThief.Desktop.v46.xml" target="lib\net46\ColorThief.Desktop.v46.xml" />
-    <file src="ColorThief.Desktop.v46\bin\Release\ColorThief.Desktop.v46.pdb" target="lib\net46\ColorThief.Desktop.v46.pdb" />
+    <file src="ColorThief.Forms\bin\Release\ColorThief.Forms.dll" target="lib\portable-net45+win8+wp8\ColorThief.Forms.dll" />
+    <file src="ColorThief.Forms\bin\Release\ColorThief.Forms.xml" target="lib\portable-net45+win8+wp8\ColorThief.Forms.xml" />
+    <file src="ColorThief.Forms\bin\Release\ColorThief.Forms.pdb" target="lib\portable-net45+win8+wp8\ColorThief.Forms.pdb" />
 
     <!--Xamarin.Android-->
-    <file src="ColorThief.Android\bin\Release\ColorThief.Android.dll" target="lib\MonoAndroid10\ColorThief.Android.dll" />
-    <file src="ColorThief.Android\bin\Release\ColorThief.Android.xml" target="lib\MonoAndroid10\ColorThief.Android.xml" />
-    <file src="ColorThief.Android\bin\Release\ColorThief.Android.pdb" target="lib\MonoAndroid10\ColorThief.Android.pdb" />
+    <file src="ColorThief.Forms.Android\bin\Release\ColorThief.Forms.Android.dll" target="lib\MonoAndroid10\ColorThief.Forms.Android.dll" />
+    <file src="ColorThief.Forms.Android\bin\Release\ColorThief.Forms.Android.xml" target="lib\MonoAndroid10\ColorThief.Forms.Android.xml" />
+    <file src="ColorThief.Forms.Android\bin\Release\ColorThief.Forms.Android.pdb" target="lib\MonoAndroid10\ColorThief.Forms.Android.pdb" />
 
     <!--Xamarin.iOS-->
-    <file src="ColorThief.iOS\bin\Release\ColorThief.iOS.dll" target="lib\Xamarin.iOS10\ColorThief.iOS.dll" />
-    <file src="ColorThief.iOS\bin\Release\ColorThief.iOS.xml" target="lib\Xamarin.iOS10\ColorThief.iOS.xml" />
-    <file src="ColorThief.iOS\bin\Release\ColorThief.iOS.pdb" target="lib\Xamarin.iOS10\ColorThief.iOS.pdb" />
+    <file src="ColorThief.Forms.iOS\bin\Release\ColorThief.Forms.iOS.dll" target="lib\Xamarin.iOS10\ColorThief.Forms.iOS.dll" />
+    <file src="ColorThief.Forms.iOS\bin\Release\ColorThief.Forms.iOS.xml" target="lib\Xamarin.iOS10\ColorThief.Forms.iOS.xml" />
+    <file src="ColorThief.Forms.iOS\bin\Release\ColorThief.Forms.iOS.pdb" target="lib\Xamarin.iOS10\ColorThief.Forms.iOS.pdb" />
 
     <!--UWP-->
-    <file src="ColorThief.UWP\bin\Release\ColorThief.UWP.dll" target="lib\UAP10\ColorThief.UWP.dll" />
-    <file src="ColorThief.UWP\bin\Release\ColorThief.UWP.xml" target="lib\UAP10\ColorThief.UWP.xml" />
-    <file src="ColorThief.UWP\bin\Release\ColorThief.UWP.pdb" target="lib\UAP10\ColorThief.UWP.pdb" />
+    <file src="ColorThief.Forms.UWP\bin\Release\ColorThief.Forms.UWP.dll" target="lib\UAP10\ColorThief.Forms.UWP.dll" />
+    <file src="ColorThief.Forms.UWP\bin\Release\ColorThief.Forms.UWP.xml" target="lib\UAP10\ColorThief.Forms.UWP.xml" />
+    <file src="ColorThief.Forms.UWP\bin\Release\ColorThief.Forms.UWP.pdb" target="lib\UAP10\ColorThief.Forms.UWP.pdb" />
 
-    <!--Xamarin.Mac
-        <file src="ColorThief.Mac\bin\Release\ColorThief.Mac.dll" target="lib\Xamarin.Mac20\ColorThief.Mac.dll" />
-        <file src="ColorThief.Mac\bin\Release\ColorThief.Mac.xml" target="lib\Xamarin.Mac20\ColorThief.Mac.xml" />
-        <file src="ColorThief.Mac\bin\Release\ColorThief.Mac.pdb" target="lib\Xamarin.Mac20\ColorThief.Mac.pdb" />
-        -->
   </files>
 </package>

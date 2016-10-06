@@ -1,10 +1,12 @@
 ﻿using System;
-using Android.Graphics;
+
 using Plugin.Media;
 using Plugin.Media.Abstractions;
 using Xamarin.Forms;
 using Color = Xamarin.Forms.Color;
-
+#if ANDROID
+using Android.Graphics;
+#endif
 #if WINDOWS_UWP
 using Windows.Graphics.Imaging;
 using Windows.Storage.Streams;

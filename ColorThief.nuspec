@@ -21,21 +21,6 @@
   </metadata>
   <files>
 
-    <!--Portable Profile259 -->
-    <file src="ColorThief.Portable\bin\Release\ColorThief.Portable.dll" target="lib\portable-net45+win8+wpa81+wp8\ColorThief.Portable.dll" />
-    <file src="ColorThief.Portable\bin\Release\ColorThief.Portable.xml" target="lib\portable-net45+win8+wpa81+wp8\ColorThief.Portable.xml" />
-    <file src="ColorThief.Portable\bin\Release\ColorThief.Portable.pdb" target="lib\portable-net45+win8+wpa81+wp8\ColorThief.Portable.pdb" />
-    
-    <!--Portable Profile111 -->
-    <file src="ColorThief.Portable\bin\Release\ColorThief.Portable.dll" target="lib\portable-net45+win8+wpa81\ColorThief.Portable.dll" />
-    <file src="ColorThief.Portable\bin\Release\ColorThief.Portable.xml" target="lib\portable-net45+win8+wpa818\ColorThief.Portable.xml" />
-    <file src="ColorThief.Portable\bin\Release\ColorThief.Portable.pdb" target="lib\portable-net45+win8+wpa81\ColorThief.Portable.pdb" />
-    
-    <!--Portable Profile78 -->
-    <file src="ColorThief.Portable\bin\Release\ColorThief.Portable.dll" target="lib\portable-net45+win8+wp8\ColorThief.Portable.dll" />
-    <file src="ColorThief.Portable\bin\Release\ColorThief.Portable.xml" target="lib\portable-net45+win8+wp8\ColorThief.Portable.xml" />
-    <file src="ColorThief.Portable\bin\Release\ColorThief.Portable.pdb" target="lib\portable-net45+win8+wp8\ColorThief.Portable.pdb" />
-
     <!--ColorThief.Desktop.v45-->
     <file src="ColorThief.Desktop.v45\bin\Release\ColorThief.Desktop.v45.dll" target="lib\net45\ColorThief.Desktop.v45.dll" />
     <file src="ColorThief.Desktop.v45\bin\Release\ColorThief.Desktop.v45.xml" target="lib\net45\ColorThief.Desktop.v45.xml" />
@@ -62,9 +47,10 @@
     <file src="ColorThief.UWP\bin\Release\ColorThief.UWP.pdb" target="lib\UAP10\ColorThief.UWP.pdb" />
 
     <!--Xamarin.Mac
-        <file src="ColorThief.Mac\bin\Release\ColorThief.Mac.dll" target="lib\Xamarin.Mac20\ColorThief.Mac.dll" />
-        <file src="ColorThief.Mac\bin\Release\ColorThief.Mac.xml" target="lib\Xamarin.Mac20\ColorThief.Mac.xml" />
-        <file src="ColorThief.Mac\bin\Release\ColorThief.Mac.pdb" target="lib\Xamarin.Mac20\ColorThief.Mac.pdb" />
-        -->
+    <file src="ColorThief.Mac\bin\Release\ColorThief.Mac.dll" target="lib\Xamarin.Mac20\ColorThief.Mac.dll" />
+    <file src="ColorThief.Mac\bin\Release\ColorThief.Mac.xml" target="lib\Xamarin.Mac20\ColorThief.Mac.xml" />
+    <file src="ColorThief.Mac\bin\Release\ColorThief.Mac.pdb" target="lib\Xamarin.Mac20\ColorThief.Mac.pdb" />
+    -->
+        
   </files>
 </package>
