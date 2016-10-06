@@ -15,7 +15,7 @@ namespace ColorThief
         private const int DefaultQuality = 10;
         private const bool DefaultIgnoreWhite = true;
 
-       // private IColorThiefBitmap bitmapConverter = new ColorThiefBitmap();
+        // private IColorThiefBitmap bitmapConverter = new ColorThiefBitmap();
 
         /// <summary>
         ///     Use the median cut algorithm to cluster similar colors and return the base color from the largest cluster.
@@ -33,7 +33,7 @@ namespace ColorThief
         {
             var palette = GetPalette(sourceImage, DefaultColorCount, quality, ignoreWhite);
             var dominantColor = palette.FirstOrDefault();
-            return dominantColor; 
+            return dominantColor;
         }
 
         /// <summary>
@@ -81,6 +81,28 @@ namespace ColorThief
 
         private IEnumerable<int> GetIntFromPixel(UIImage bmp)
         {
+
+            using (var colourSpace = CGColorSpace.CreateDeviceRGB())
+            {
+                var rawData = Marshal.AllocHGlobal((int)bmp.Size.Width * (int)bmp.Size.Height * 4);
+                using (var context = new CGBitmapContext(rawData, (int)bmp.Size.Width, (int)bmp.Size.Height, 8, 4 * (int)bmp.Size.Width, colourSpace, CGImageAlphaInfo.PremultipliedLast))
+                {
+                    context.DrawImage(new CGRect(0, 0, (int)bmp.Size.Width, (int)bmp.Size.Height), bmp.CGImage);
+                    var pixelData = new byte[(int)bmp.Size.Width * (int)bmp.Size.Height * 4];
+                    Marshal.Copy(rawData, pixelData, 0, pixelData.Length);
+                    Marshal.FreeHGlobal(rawData);
+
+
+                    foreach (var item in pixelData)
+                    {
+                        yield return (int)item;
+                    }
+
+                }
+            }
+
+            /*
+
             for (var x = 0; x < bmp.Size.Width; x++)
             {
                 for (var y = 0; y < bmp.Size.Height; y++)
@@ -97,6 +119,7 @@ namespace ColorThief
                             {
                                 context.DrawImage(new RectangleF(-x, y - Convert.ToInt32(bmp.Size.Height), Convert.ToInt32(bmp.Size.Width), 
                                     Convert.ToInt32(bmp.Size.Height)), bmp.CGImage);
+
 
                                 //float red = (rawData[0]) / 255.0f;
                                 //float green = (rawData[1]) / 255.0f;
@@ -117,7 +140,7 @@ namespace ColorThief
                     }
 
                 }
-            }
+            } */
         }
 
 
