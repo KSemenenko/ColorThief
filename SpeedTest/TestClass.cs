@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Drawing;
 using BenchmarkDotNet.Attributes;
 
 namespace SpeedTest
@@ -25,6 +20,5 @@ namespace SpeedTest
             var bitmap = (Bitmap)Image.FromFile("test2.jpg");
             var result = colorThief.GetColor(bitmap);
         }
-
     }
 }

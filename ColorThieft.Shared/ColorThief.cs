@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace ColorThief
 {
@@ -28,8 +26,8 @@ namespace ColorThief
         {
             const int colorDepth = 4;
 
-            var expectedDataLength = pixelCount * colorDepth;
-            if (expectedDataLength != pixels.Length)
+            var expectedDataLength = pixelCount*colorDepth;
+            if(expectedDataLength != pixels.Length)
             {
                 throw new ArgumentException("(expectedDataLength = "
                                             + expectedDataLength + ") != (pixels.length = "
@@ -42,23 +40,23 @@ namespace ColorThief
             // numRegardedPixels must be rounded up to avoid an
             // ArrayIndexOutOfBoundsException if all pixels are good.
 
-            var numRegardedPixels = (pixelCount + quality - 1) / quality;
+            var numRegardedPixels = (pixelCount + quality - 1)/quality;
 
             var numUsedPixels = 0;
             var pixelArray = new int[numRegardedPixels][];
 
-            for (var i = 0; i < pixelCount; i += quality)
+            for(var i = 0; i < pixelCount; i += quality)
             {
-                var offset = i * 4;
+                var offset = i*4;
                 var b = pixels[offset];
                 var g = pixels[offset + 1];
                 var r = pixels[offset + 2];
                 var a = pixels[offset + 3];
 
                 // If pixel is mostly opaque and not white
-                if (a >= 125 && !(ignoreWhite && r > 250 && g > 250 && b > 250))
+                if(a >= 125 && !(ignoreWhite && r > 250 && g > 250 && b > 250))
                 {
-                    pixelArray[numUsedPixels] = new[] { r, g, b };
+                    pixelArray[numUsedPixels] = new[] {r, g, b};
                     numUsedPixels++;
                 }
             }
