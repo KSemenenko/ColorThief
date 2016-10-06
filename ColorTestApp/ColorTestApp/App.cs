@@ -7,7 +7,9 @@ using Xamarin.Forms;
 #if WINDOWS_UWP
 using Windows.Graphics.Imaging;
 using Windows.Storage.Streams;
-
+#endif
+#if __IOS__
+using UIKit;
 #endif
 
 namespace ColorTestApp
@@ -33,6 +35,7 @@ namespace ColorTestApp
 
             var takePhoto = new Button {Text = "GetPhoto"};
             var image = new Image();
+            
 
             takePhoto.Clicked += async (sender, args) =>
             {
@@ -69,10 +72,18 @@ namespace ColorTestApp
                 //var bitmap1 = Android.Graphics.BitmapFactory.DecodeFile(file.Path);
                 ColorThief.ColorThief ct = new ColorThief.ColorThief();
                 var xxxx = ct.GetColor(bitmap1);
+                takePhoto.BackgroundColor = new Color(xxxx.Color.R, xxxx.Color.G, xxxx.Color.B);
                 int a = 5;
 #elif WINDOWS_UWP
 
-                UWP(file);
+                UWP(file, takePhoto);
+#elif __IOS__
+
+                var bitmap1 = UIImage.FromFile(file.Path);
+                ColorThief.ColorThief ct = new ColorThief.ColorThief();
+                var xxxx = ct.GetColor(bitmap1);
+                takePhoto.BackgroundColor = new Color(xxxx.Color.R, xxxx.Color.G, xxxx.Color.B);
+                int a = 5;
 #endif
             };
 
@@ -96,7 +107,7 @@ namespace ColorTestApp
         }
 
 #if WINDOWS_UWP
-        private async Task UWP(MediaFile file)
+        private async Task UWP(MediaFile file, Button tk)
         {
             try
             {
@@ -105,6 +116,7 @@ namespace ColorTestApp
                     var decoder = await BitmapDecoder.CreateAsync(stream);
                     var ct = new ColorThief.ColorThief();
                     var xxxx = await ct.GetColor(decoder);
+                    tk.BackgroundColor = new Color(xxxx.Color.R, xxxx.Color.G, xxxx.Color.B);
                     var a = 5;
                 }
             }
