@@ -49,7 +49,7 @@ namespace ColorThief
 
         private byte[] GetIntFromPixel(Bitmap bmp)
         {
-            var pixelList = new byte[bmp.Width * bmp.Height*4];
+            var pixelList = new byte[bmp.Width * bmp.Height * 4];
             int[] intArray = new int[bmp.Width * bmp.Height];
 
             bmp.GetPixels(intArray, 0, bmp.Width, 0, 0, bmp.Width, bmp.Height);
@@ -83,7 +83,7 @@ namespace ColorThief
             }
 
             var pixels = GetIntFromPixel(sourceImage);
-            var pixelCount = sourceImage.Width*sourceImage.Height;
+            var pixelCount = sourceImage.Width * sourceImage.Height;
 
             return ConvertPixels(pixels, pixelCount, quality, ignoreWhite);
         }

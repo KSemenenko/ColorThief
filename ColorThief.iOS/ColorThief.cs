@@ -52,13 +52,15 @@ namespace ColorThief
 
         private byte[] GetIntFromPixel(UIImage bmp)
         {
+            var width = (int)bmp.Size.Width;
+            var height = (int)bmp.Size.Height;
             using(var colourSpace = CGColorSpace.CreateDeviceRGB())
             {
-                var rawData = Marshal.AllocHGlobal((int)bmp.Size.Width*(int)bmp.Size.Height*4);
-                using(var context = new CGBitmapContext(rawData, (int)bmp.Size.Width, (int)bmp.Size.Height, 8, 4*(int)bmp.Size.Width, colourSpace, CGImageAlphaInfo.PremultipliedLast))
+                var rawData = Marshal.AllocHGlobal(width * height * 4);
+                using(var context = new CGBitmapContext(rawData, width, height, 8, 4 * width, colourSpace, CGImageAlphaInfo.PremultipliedLast))
                 {
-                    context.DrawImage(new CGRect(0, 0, (int)bmp.Size.Width, (int)bmp.Size.Height), bmp.CGImage);
-                    var pixelData = new byte[(int)bmp.Size.Width*(int)bmp.Size.Height*4];
+                    context.DrawImage(new CGRect(0, 0, width, height), bmp.CGImage);
+                    var pixelData = new byte[width * height * 4];
                     Marshal.Copy(rawData, pixelData, 0, pixelData.Length);
                     Marshal.FreeHGlobal(rawData);
 
@@ -74,7 +76,7 @@ namespace ColorThief
                 quality = DefaultQuality;
             }
             var pixels = GetIntFromPixel(sourceImage);
-            var pixelCount = (int)sourceImage.Size.Width*(int)sourceImage.Size.Height;
+            var pixelCount = (int)sourceImage.Size.Width * (int)sourceImage.Size.Height;
 
             return ConvertPixels(pixels, pixelCount, quality, ignoreWhite);
         }
