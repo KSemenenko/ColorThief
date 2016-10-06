@@ -15,7 +15,7 @@ namespace SpeedTest
         {
             var colorThief = new ColorThief.ColorThief();
             var bitmap = (Bitmap)Image.FromFile("test1.jpg");
-            var rezule = colorThief.GetColor(bitmap);
+            var result = colorThief.GetColor(bitmap);
         }
 
         [Benchmark]
@@ -23,7 +23,7 @@ namespace SpeedTest
         {
             var colorThief = new ColorThief.ColorThief();
             var bitmap = (Bitmap)Image.FromFile("test2.jpg");
-            var rezule = colorThief.GetColor(bitmap);
+            var result = colorThief.GetColor(bitmap);
         }
 
     }

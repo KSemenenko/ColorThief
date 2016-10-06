@@ -4,12 +4,8 @@
 
 //namespace ColorThief
 //{
-//    public class ColorThief
+//    public partial class ColorThief
 //    {
-//        private const int DefaultColorCount = 5;
-//        private const int DefaultQuality = 10;
-//        private const bool DefaultIgnoreWhite = true;
-
 //        /// <summary>
 //        ///     Use the median cut algorithm to cluster similar colors and return the base color from the largest cluster.
 //        /// </summary>

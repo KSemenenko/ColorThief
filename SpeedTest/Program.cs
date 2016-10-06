@@ -15,7 +15,25 @@ namespace SpeedTest
             x.Image1();
             x.Image2();
 
-            var summary = BenchmarkRunner.Run<TestClass>();
+            x.Image1();
+            x.Image2();
+
+            x.Image1();
+            x.Image2();
+
+            x.Image1();
+            x.Image2();
+
+            x.Image1();
+            x.Image2();
+
+            x.Image1();
+            x.Image2();
+
+            x.Image1();
+            x.Image2();
+
+            //var summary = BenchmarkRunner.Run<TestClass>();
             Console.ReadLine();
         }
     }

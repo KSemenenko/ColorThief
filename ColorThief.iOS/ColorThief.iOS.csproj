@@ -43,7 +43,6 @@
       <Link>Properties\SharedAssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="ColorThief.cs" />
-    <Compile Include="ColorThiefBitmap.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="..\ColorThieft.Shared\ColorThieftShared.projitems" Label="Shared" />
