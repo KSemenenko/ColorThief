@@ -1,9 +1,9 @@
-﻿using System;
-using System.IO;
-using System.Threading.Tasks;
+﻿using Android.Graphics;
 using Plugin.Media;
 using Plugin.Media.Abstractions;
 using Xamarin.Forms;
+using Color = Xamarin.Forms.Color;
+
 #if WINDOWS_UWP
 using Windows.Graphics.Imaging;
 using Windows.Storage.Streams;
@@ -35,7 +35,6 @@ namespace ColorTestApp
 
             var takePhoto = new Button {Text = "GetPhoto"};
             var image = new Image();
-            
 
             takePhoto.Clicked += async (sender, args) =>
             {
@@ -68,12 +67,12 @@ namespace ColorTestApp
 
 #if ANDROID
 
-                var bitmap1 = Android.Graphics.BitmapFactory.DecodeStream(file.GetStream());
+                var bitmap1 = BitmapFactory.DecodeStream(file.GetStream());
                 //var bitmap1 = Android.Graphics.BitmapFactory.DecodeFile(file.Path);
-                ColorThief.ColorThief ct = new ColorThief.ColorThief();
+                var ct = new ColorThief.ColorThief();
                 var xxxx = ct.GetColor(bitmap1);
                 takePhoto.BackgroundColor = new Color(xxxx.Color.R, xxxx.Color.G, xxxx.Color.B);
-                int a = 5;
+                var a = 5;
 #elif WINDOWS_UWP
 
                 UWP(file, takePhoto);
@@ -126,6 +125,5 @@ namespace ColorTestApp
             }
         }
 #endif
-
     }
 }

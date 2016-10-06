@@ -49,32 +49,31 @@ namespace ColorThief
 
         private byte[] GetIntFromPixel(Bitmap bmp)
         {
-            var pixelList = new byte[bmp.Width * bmp.Height * 4];
-            int count = 0;
+            var pixelList = new byte[bmp.Width * bmp.Height*4];
+            int[] intArray = new int[bmp.Width * bmp.Height];
 
-            for (var x = 0; x < bmp.Width; x++)
+            bmp.GetPixels(intArray, 0, bmp.Width, 0, 0, bmp.Width, bmp.Height);
+            var count = 0;
+
+            foreach (var item in intArray)
             {
-                for (var y = 0; y < bmp.Height; y++)
-                {
-                    var clr = BitConverter.GetBytes(bmp.GetPixel(x, y));
+                var clr = BitConverter.GetBytes(item);
 
-                    pixelList[count] = clr[3];
-                    count++;
+                pixelList[count] = clr[0];
+                count++;
 
-                    pixelList[count] = clr[2];
-                    count++;
+                pixelList[count] = clr[1];
+                count++;
 
-                    pixelList[count] = clr[1];
-                    count++;
+                pixelList[count] = clr[2];
+                count++;
 
-                    pixelList[count] = clr[0];
-                    count++;
-                }
+                pixelList[count] = clr[3];
+                count++;
             }
 
             return pixelList;
         }
-
 
         private byte[][] GetPixelsFast(Bitmap sourceImage, int quality, bool ignoreWhite)
         {
