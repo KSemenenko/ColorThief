@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Windows.Graphics.Imaging;
 
-namespace ColorThief
+namespace ColorThiefDotNet
 {
     public partial class ColorThief
     {
@@ -22,7 +22,7 @@ namespace ColorThief
         /// <returns></returns>
         public async Task<QuantizedColor> GetColor(BitmapDecoder sourceImage, int quality = DefaultQuality, bool ignoreWhite = DefaultIgnoreWhite)
         {
-            var palette = await GetPalette(sourceImage, DefaultColorCount, quality, ignoreWhite);
+            var palette = await GetPalette(sourceImage, 1, quality, ignoreWhite);
             var dominantColor = palette.FirstOrDefault();
             return dominantColor;
         }

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ColorThief
+namespace ColorThiefDotNet
 {
     public class QuantizedColor
     {

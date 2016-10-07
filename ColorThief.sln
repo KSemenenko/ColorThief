@@ -53,6 +53,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ColorThief.Forms.UWP", "Col
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ColorThief.Forms", "ColorThief.Forms\ColorThief.Forms.csproj", "{DE6DF2AF-F48A-4C71-A638-97BE848B31E3}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Forms", "Forms", "{4D1CF002-F623-445B-8062-E09B7DF9DCA0}"
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		ColorThieft.Shared\ColorThieftShared.projitems*{09d37433-1579-4cc3-8670-4c7bc66378a5}*SharedItemsImports = 4
@@ -62,9 +64,12 @@ Global
 		ColorTestApp\ColorTestApp\ColorTestApp.projitems*{487914fd-c237-49f7-abbe-1c96635577af}*SharedItemsImports = 13
 		ColorThieft.Shared\ColorThieftShared.projitems*{53bc135e-85dc-49ad-812b-4682411bd3e3}*SharedItemsImports = 4
 		ColorTestApp\ColorTestApp\ColorTestApp.projitems*{69dc3ae9-f01c-4ce4-b045-ef035a76e24e}*SharedItemsImports = 4
+		ColorThieft.Shared\ColorThieftShared.projitems*{85310049-2c64-4c1e-bf5a-212a50e611ee}*SharedItemsImports = 4
 		ColorTestApp\ColorTestApp\ColorTestApp.projitems*{8c8f2965-64a6-4506-a012-e829a2de8f53}*SharedItemsImports = 4
 		ColorTestApp\ColorTestApp\ColorTestApp.projitems*{ca63949b-e3af-4979-bda4-44df2c4c53e3}*SharedItemsImports = 4
 		ColorThieft.Shared\ColorThieftShared.projitems*{d778f4be-e4bf-436d-b4a1-5de48a6f785f}*SharedItemsImports = 4
+		ColorThieft.Shared\ColorThieftShared.projitems*{e024472b-2c3b-4aac-a271-10c24787ad73}*SharedItemsImports = 4
+		ColorThieft.Shared\ColorThieftShared.projitems*{e5b10629-32bf-42d8-84c0-1f9dba6d041b}*SharedItemsImports = 4
 		ColorThieft.Shared\ColorThieftShared.projitems*{fecb73a5-efa0-42f0-8b4b-22197a68d28a}*SharedItemsImports = 13
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -803,9 +808,10 @@ Global
 		{487914FD-C237-49F7-ABBE-1C96635577AF} = {B28CF1B5-8B66-49D5-8289-53700472B242}
 		{B28CF1B5-8B66-49D5-8289-53700472B242} = {1F207E55-8C72-43A2-84D0-8905826EE928}
 		{46A4D077-45C9-49DD-BF79-BC654FC93288} = {1F207E55-8C72-43A2-84D0-8905826EE928}
-		{85310049-2C64-4C1E-BF5A-212A50E611EE} = {72BBB3BE-85C4-443A-927E-31DA4C931938}
-		{E5B10629-32BF-42D8-84C0-1F9DBA6D041B} = {72BBB3BE-85C4-443A-927E-31DA4C931938}
-		{E024472B-2C3B-4AAC-A271-10C24787AD73} = {72BBB3BE-85C4-443A-927E-31DA4C931938}
-		{DE6DF2AF-F48A-4C71-A638-97BE848B31E3} = {72BBB3BE-85C4-443A-927E-31DA4C931938}
+		{85310049-2C64-4C1E-BF5A-212A50E611EE} = {4D1CF002-F623-445B-8062-E09B7DF9DCA0}
+		{E5B10629-32BF-42D8-84C0-1F9DBA6D041B} = {4D1CF002-F623-445B-8062-E09B7DF9DCA0}
+		{E024472B-2C3B-4AAC-A271-10C24787AD73} = {4D1CF002-F623-445B-8062-E09B7DF9DCA0}
+		{DE6DF2AF-F48A-4C71-A638-97BE848B31E3} = {4D1CF002-F623-445B-8062-E09B7DF9DCA0}
+		{4D1CF002-F623-445B-8062-E09B7DF9DCA0} = {72BBB3BE-85C4-443A-927E-31DA4C931938}
 	EndGlobalSection
 EndGlobal

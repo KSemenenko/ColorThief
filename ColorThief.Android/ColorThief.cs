@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Android.Graphics;
 
-namespace ColorThief
+namespace ColorThiefDotNet
 {
     public partial class ColorThief
     {
@@ -21,7 +21,7 @@ namespace ColorThief
         /// <returns></returns>
         public QuantizedColor GetColor(Bitmap sourceImage, int quality = DefaultQuality, bool ignoreWhite = DefaultIgnoreWhite)
         {
-            var palette = GetPalette(sourceImage, DefaultColorCount, quality, ignoreWhite);
+            var palette = GetPalette(sourceImage, 1, quality, ignoreWhite);
             var dominantColor = palette.FirstOrDefault();
             return dominantColor;
         }

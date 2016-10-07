@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ColorThief
+namespace ColorThiefDotNet
 {
     /// <summary>
     ///     Defines a color in RGB space.
@@ -33,10 +33,10 @@ namespace ColorThief
         /// <returns></returns>
         public HslColor ToHsl()
         {
-            const double toDouble = 1.0/255;
-            var r = toDouble*R;
-            var g = toDouble*G;
-            var b = toDouble*B;
+            const double toDouble = 1.0 / 255;
+            var r = toDouble * R;
+            var g = toDouble * G;
+            var b = toDouble * B;
             var max = Math.Max(Math.Max(r, g), b);
             var min = Math.Min(Math.Min(r, g), b);
             var chroma = max - min;
@@ -49,36 +49,46 @@ namespace ColorThief
             }
             else if(max == r)
             {
-                h1 = (g - b)/chroma%6;
+                h1 = (g - b) / chroma % 6;
             }
             else if(max == g)
             {
-                h1 = 2 + (b - r)/chroma;
+                h1 = 2 + (b - r) / chroma;
             }
             else //if (max == b)
             {
                 h1 = 4 + (r - g)/chroma;
             }
 
-            var lightness = 0.5*(max - min);
-            var saturation = chroma == 0 ? 0 : chroma/(1 - Math.Abs(2*lightness - 1));
+            var lightness = 0.5 * (max - min);
+            var saturation = chroma == 0 ? 0 : chroma / (1 - Math.Abs(2*lightness - 1));
             HslColor ret;
-            ret.H = 60*h1;
+            ret.H = 60 * h1;
             ret.S = saturation;
             ret.L = lightness;
-            ret.A = toDouble*A;
+            ret.A = toDouble * A;
             return ret;
             // ReSharper restore CompareOfFloatsByEqualityOperator
         }
 
         public string ToHexString()
         {
-            return R.ToString("X2") + G.ToString("X2") + B.ToString("X2");
+            return "#" + R.ToString("X2") + G.ToString("X2") + B.ToString("X2");
         }
 
-        public string ToHexWithAlphaString()
+        public string ToHexAlphaString()
         {
-            return A.ToString("X2") + R.ToString("X2") + G.ToString("X2") + B.ToString("X2");
+            return "#" + A.ToString("X2") + R.ToString("X2") + G.ToString("X2") + B.ToString("X2");
+        }
+
+        public override string ToString()
+        {
+            if(A == 255)
+            {
+                return ToHexString();
+            }
+
+            return ToHexAlphaString();
         }
     }
 }

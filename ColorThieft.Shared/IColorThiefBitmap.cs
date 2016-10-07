@@ -1,6 +1,6 @@
 ﻿using System.IO;
 
-namespace ColorThieftShared
+namespace ColorThiefDotNettShared
 {
     public interface IColorThiefBitmap
     {

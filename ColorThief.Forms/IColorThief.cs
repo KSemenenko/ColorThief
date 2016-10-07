@@ -1,5 +1,8 @@
 ﻿using System;
-namespace ColorThief.Forms
+using System.Collections.Generic;
+using Xamarin.Forms;
+
+namespace ColorThiefDotNet.Forms
 {
     public interface IColorThief
     {
@@ -32,7 +35,7 @@ namespace ColorThief.Forms
         /// <param name="ignoreWhite">if set to <c>true</c> [ignore white].</param>
         /// <returns></returns>
         /// <code>true</code>
-        List<QuantizedColor> GetPalette(ImageSource sourceImage, int colorCount, int quality, bool ignoreWhite)
+        List<QuantizedColor> GetPalette(ImageSource sourceImage, int colorCount, int quality, bool ignoreWhite);
 
     }
 }

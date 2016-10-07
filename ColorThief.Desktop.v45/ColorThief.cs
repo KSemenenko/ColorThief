@@ -5,7 +5,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace ColorThief
+namespace ColorThiefDotNet
 {
     public partial class ColorThief
     {
@@ -23,7 +23,7 @@ namespace ColorThief
         /// <returns></returns>
         public QuantizedColor GetColor(Bitmap sourceImage, int quality = DefaultQuality, bool ignoreWhite = DefaultIgnoreWhite)
         {
-            var palette = GetPalette(sourceImage, DefaultColorCount, quality, ignoreWhite);
+            var palette = GetPalette(sourceImage, 1, quality, ignoreWhite);
             var dominantColor = palette.FirstOrDefault();
             return dominantColor;
         }

@@ -4,7 +4,7 @@ using System.Runtime.InteropServices;
 using CoreGraphics;
 using UIKit;
 
-namespace ColorThief
+namespace ColorThiefDotNet
 {
     public partial class ColorThief
     {
@@ -24,7 +24,7 @@ namespace ColorThief
         /// <returns></returns>
         public QuantizedColor GetColor(UIImage sourceImage, int quality = DefaultQuality, bool ignoreWhite = DefaultIgnoreWhite)
         {
-            var palette = GetPalette(sourceImage, DefaultColorCount, quality, ignoreWhite);
+            var palette = GetPalette(sourceImage, 1, quality, ignoreWhite);
             var dominantColor = palette.FirstOrDefault();
             return dominantColor;
         }

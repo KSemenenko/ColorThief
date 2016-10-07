@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace ColorThief
+namespace ColorThiefDotNet
 {
     /// <summary>
     ///     3D color space box.

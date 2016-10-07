@@ -17,8 +17,8 @@
     <summary> A code for grabbing the color palette from an image. Uses C# and .NET to make it happen.</summary>
     <tags>ColorThief, Color, Thief, .net, xamarin, pcl, plugin, windows phone, uwp, winphone, wp8, winrt, android, xamarin.forms, ios, mac, version</tags>
     <dependencies>
-      <dependency id="ksemenenko.ColorThief" version="1.0.2.1" />
-      <dependency id="Xamarin.Forms" version="2.3.2.127" />
+      <dependency id="ksemenenko.ColorThief" version="1.1.0.1" />
+      <dependency id="Xamarin.Forms" version="2.3.0.107" />
     </dependencies>
   </metadata>
   <files>
@@ -39,16 +39,25 @@
     <file src="ColorThief.Forms\bin\Release\ColorThief.Forms.pdb" target="lib\portable-net45+win8+wp8\ColorThief.Forms.pdb" />
 
     <!--Xamarin.Android-->
+    <file src="ColorThief.Forms\bin\Release\ColorThief.Forms.dll" target="lib\MonoAndroid10\ColorThief.Forms.dll" />
+    <file src="ColorThief.Forms\bin\Release\ColorThief.Forms.xml" target="lib\MonoAndroid10\ColorThief.Forms.xml" />
+    <file src="ColorThief.Forms\bin\Release\ColorThief.Forms.pdb" target="lib\MonoAndroid10\ColorThief.Forms.pdb" />
     <file src="ColorThief.Forms.Android\bin\Release\ColorThief.Forms.Android.dll" target="lib\MonoAndroid10\ColorThief.Forms.Android.dll" />
     <file src="ColorThief.Forms.Android\bin\Release\ColorThief.Forms.Android.xml" target="lib\MonoAndroid10\ColorThief.Forms.Android.xml" />
     <file src="ColorThief.Forms.Android\bin\Release\ColorThief.Forms.Android.pdb" target="lib\MonoAndroid10\ColorThief.Forms.Android.pdb" />
 
     <!--Xamarin.iOS-->
+    <file src="ColorThief.Forms\bin\Release\ColorThief.Forms.dll" target="lib\Xamarin.iOS10\ColorThief.Forms.dll" />
+    <file src="ColorThief.Forms\bin\Release\ColorThief.Forms.xml" target="lib\Xamarin.iOS10\ColorThief.Forms.xml" />
+    <file src="ColorThief.Forms\bin\Release\ColorThief.Forms.pdb" target="lib\Xamarin.iOS10\ColorThief.Forms.pdb" />
     <file src="ColorThief.Forms.iOS\bin\Release\ColorThief.Forms.iOS.dll" target="lib\Xamarin.iOS10\ColorThief.Forms.iOS.dll" />
     <file src="ColorThief.Forms.iOS\bin\Release\ColorThief.Forms.iOS.xml" target="lib\Xamarin.iOS10\ColorThief.Forms.iOS.xml" />
     <file src="ColorThief.Forms.iOS\bin\Release\ColorThief.Forms.iOS.pdb" target="lib\Xamarin.iOS10\ColorThief.Forms.iOS.pdb" />
 
     <!--UWP-->
+    <file src="ColorThief.Forms\bin\Release\ColorThief.Forms.dll" target="lib\UAP10\ColorThief.Forms.dll" />
+    <file src="ColorThief.Forms\bin\Release\ColorThief.Forms.xml" target="lib\UAP10\ColorThief.Forms.xml" />
+    <file src="ColorThief.Forms\bin\Release\ColorThief.Forms.pdb" target="lib\UAP10\ColorThief.Forms.pdb" />
     <file src="ColorThief.Forms.UWP\bin\Release\ColorThief.Forms.UWP.dll" target="lib\UAP10\ColorThief.Forms.UWP.dll" />
     <file src="ColorThief.Forms.UWP\bin\Release\ColorThief.Forms.UWP.xml" target="lib\UAP10\ColorThief.Forms.UWP.xml" />
     <file src="ColorThief.Forms.UWP\bin\Release\ColorThief.Forms.UWP.pdb" target="lib\UAP10\ColorThief.Forms.UWP.pdb" />

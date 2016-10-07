@@ -3,7 +3,7 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using CoreGraphics;
 
-namespace ColorThief
+namespace ColorThiefDotNet
 {
     public partial class ColorThief
     {

@@ -109,12 +109,21 @@
     <None Include="project.json" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\ColorThief.Forms\IColorThief.cs">
+      <Link>IColorThief.cs</Link>
+    </Compile>
+    <Compile Include="..\ColorThief.UWP\ColorThief.cs">
+      <Link>ColorThief.cs</Link>
+    </Compile>
     <Compile Include="..\ColorThieft.Shared\SharedAssemblyInfo.cs">
       <Link>Properties\SharedAssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="ColorThiefImplementation.cs" />
+    <Compile Include="CrossColorThief.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Properties\ColorThief.Forms.UWP.rd.xml" />
   </ItemGroup>
+  <Import Project="..\ColorThieft.Shared\ColorThieftShared.projitems" Label="Shared" />
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>

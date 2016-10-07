@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace ColorThief
+namespace ColorThiefDotNet
 {
     /// <summary>
     ///     Color map

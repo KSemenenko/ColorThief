@@ -1,12 +1,13 @@
 ﻿using System;
 
-namespace ColorThief
+namespace ColorThiefDotNet
 {
     public partial class ColorThief
     {
         private const int DefaultColorCount = 5;
         private const int DefaultQuality = 10;
         private const bool DefaultIgnoreWhite = true;
+        private const int ColorDepth = 4;
 
         /// <summary>
         ///     Use the median cut algorithm to cluster similar colors.
@@ -24,9 +25,9 @@ namespace ColorThief
 
         private byte[][] ConvertPixels(byte[] pixels, int pixelCount, int quality, bool ignoreWhite)
         {
-            const int colorDepth = 4;
+            
 
-            var expectedDataLength = pixelCount*colorDepth;
+            var expectedDataLength = pixelCount * ColorDepth;
             if(expectedDataLength != pixels.Length)
             {
                 throw new ArgumentException("(expectedDataLength = "
@@ -40,14 +41,14 @@ namespace ColorThief
             // numRegardedPixels must be rounded up to avoid an
             // ArrayIndexOutOfBoundsException if all pixels are good.
 
-            var numRegardedPixels = (pixelCount + quality - 1)/quality;
+            var numRegardedPixels = (pixelCount + quality - 1) / quality;
 
             var numUsedPixels = 0;
             var pixelArray = new byte[numRegardedPixels][];
 
             for(var i = 0; i < pixelCount; i += quality)
             {
-                var offset = i*4;
+                var offset = i * ColorDepth;
                 var b = pixels[offset];
                 var g = pixels[offset + 1];
                 var r = pixels[offset + 2];

@@ -1,5 +1,5 @@
 ﻿using System;
-
+using ColorThiefDotNet;
 using Plugin.Media;
 using Plugin.Media.Abstractions;
 using Xamarin.Forms;
@@ -72,7 +72,7 @@ namespace ColorTestApp
 
                 var bitmap1 = BitmapFactory.DecodeStream(file.GetStream());
                 //var bitmap1 = Android.Graphics.BitmapFactory.DecodeFile(file.Path);
-                var ct = new ColorThief.ColorThief();
+                var ct = new ColorThief();
                 var ctColor = ct.GetColor(bitmap1);               
                 MainPage.BackgroundColor = Color.FromHex(ctColor.Color.ToHexString());
                 var a = 5;
@@ -82,7 +82,7 @@ namespace ColorTestApp
 #elif __IOS__
 
                 var bitmap1 = UIImage.FromFile(file.Path);
-                ColorThief.ColorThief ct = new ColorThief.ColorThief();
+                ColorThief ct = new ColorThief();
                 var ctColor = ct.GetColor(bitmap1);
                 MainPage.BackgroundColor = Color.FromHex(ctColor.Color.ToHexString());
                 int a = 5;
@@ -117,7 +117,7 @@ namespace ColorTestApp
                 using(IRandomAccessStream stream = file.GetStream().AsRandomAccessStream())
                 {
                     var decoder = await BitmapDecoder.CreateAsync(stream);
-                    var ct = new ColorThief.ColorThief();
+                    var ct = new ColorThief();
                     var ctColor = await ct.GetColor(decoder);
                     MainPage.BackgroundColor = Color.FromHex(ctColor.Color.ToHexString());
                     var a = 5;

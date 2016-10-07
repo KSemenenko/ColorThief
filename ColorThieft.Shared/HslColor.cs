@@ -1,4 +1,4 @@
-﻿namespace ColorThief
+﻿namespace ColorThiefDotNet
 {
     /// <summary>
     ///     Defines a color in Hue/Saturation/Lightness (HSL) space.
