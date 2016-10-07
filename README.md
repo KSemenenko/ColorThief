@@ -13,12 +13,12 @@ https://www.nuget.org/packages/ksemenenko.ColorThief/
 |Platform|Supported|Version|
 | ------------------- | :-----------: | :------------------: |
 |Xamarin.iOS|Partial|iOS 6+|
-|Xamarin.Android|Partial|API 10+|
+|Xamarin.Android|Yes|API 10+|
 |Windows Phone 8|Partial|8.0+|
-|Windows Phone 8.1|Partial|8.1+|
-|Windows Store|Partial|8.1+|
-|Windows 10 UWP|Partial|10+|
-|Xamarin.Mac|Partial||
+|Windows Phone 8.1|No|8.1+|
+|Windows Store|No|8.1+|
+|Windows 10 UWP|Yes|10+|
+|Xamarin.Mac|No||
 |Desktop .NET 4.5|Yes||
 |Desktop .NET 4.6|Yes||
 
