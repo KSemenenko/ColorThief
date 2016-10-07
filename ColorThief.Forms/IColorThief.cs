@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace ColorThiefDotNet.Forms
@@ -18,7 +19,7 @@ namespace ColorThiefDotNet.Forms
         /// </param>
         /// <param name="ignoreWhite">if set to <c>true</c> [ignore white].</param>
         /// <returns></returns>
-        QuantizedColor GetColor(ImageSource sourceImage, int quality, bool ignoreWhite);
+        Task<QuantizedColor> GetColor(ImageSource sourceImage, int quality, bool ignoreWhite);
 
 
         /// <summary>
@@ -35,7 +36,7 @@ namespace ColorThiefDotNet.Forms
         /// <param name="ignoreWhite">if set to <c>true</c> [ignore white].</param>
         /// <returns></returns>
         /// <code>true</code>
-        List<QuantizedColor> GetPalette(ImageSource sourceImage, int colorCount, int quality, bool ignoreWhite);
+        Task<List<QuantizedColor>> GetPalette(ImageSource sourceImage, int colorCount, int quality, bool ignoreWhite);
 
     }
 }

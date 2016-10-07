@@ -17,9 +17,6 @@ using UIKit;
 
 namespace ColorTestApp
 {
-    //http://stackoverflow.com/questions/28123300/xamarin-forms-c-sharp-find-dominant-color-of-image-or-image-byte-array
-    //http://stackoverflow.com/questions/7807360/how-to-get-pixel-colour-in-android
-
     public class App : Application
     {
 #if __IOS__

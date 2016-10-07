@@ -4,10 +4,10 @@ namespace ColorThiefDotNet
 {
     public partial class ColorThief
     {
-        private const int DefaultColorCount = 5;
-        private const int DefaultQuality = 10;
-        private const bool DefaultIgnoreWhite = true;
-        private const int ColorDepth = 4;
+        public const int DefaultColorCount = 5;
+        public const int DefaultQuality = 10;
+        public const bool DefaultIgnoreWhite = true;
+        public const int ColorDepth = 4;
 
         /// <summary>
         ///     Use the median cut algorithm to cluster similar colors.
