@@ -19,7 +19,7 @@ namespace ColorThiefDotNet.Forms
         /// </param>
         /// <param name="ignoreWhite">if set to <c>true</c> [ignore white].</param>
         /// <returns></returns>
-        Task<QuantizedColor> GetColor(ImageSource sourceImage, int quality, bool ignoreWhite);
+        Task<QuantizedColor> GetColor(ImageSource sourceImage, int quality = ColorThief.DefaultQuality, bool ignoreWhite = ColorThief.DefaultIgnoreWhite);
 
 
         /// <summary>
@@ -36,7 +36,8 @@ namespace ColorThiefDotNet.Forms
         /// <param name="ignoreWhite">if set to <c>true</c> [ignore white].</param>
         /// <returns></returns>
         /// <code>true</code>
-        Task<List<QuantizedColor>> GetPalette(ImageSource sourceImage, int colorCount, int quality, bool ignoreWhite);
+        Task<List<QuantizedColor>> GetPalette(ImageSource sourceImage, int colorCount = ColorThief.DefaultColorCount, int quality = ColorThief.DefaultQuality,
+            bool ignoreWhite = ColorThief.DefaultIgnoreWhite);
 
     }
 }

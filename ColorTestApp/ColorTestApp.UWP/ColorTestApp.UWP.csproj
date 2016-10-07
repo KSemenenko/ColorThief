@@ -128,9 +128,9 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\ColorThief.UWP\ColorThief.UWP.csproj">
-      <Project>{20927f64-6f01-499e-9a3e-005def6d5284}</Project>
-      <Name>ColorThief.UWP</Name>
+    <ProjectReference Include="..\..\ColorThief.Forms.UWP\ColorThief.Forms.UWP.csproj">
+      <Project>{e024472b-2c3b-4aac-a271-10c24787ad73}</Project>
+      <Name>ColorThief.Forms.UWP</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">

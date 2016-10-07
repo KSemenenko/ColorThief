@@ -146,9 +146,9 @@
     <None Include="Properties\AndroidManifest.xml" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\ColorThief.Android\ColorThief.Android.csproj">
-      <Project>{193dc806-8928-4edc-b739-94557ffc9089}</Project>
-      <Name>ColorThief.Android</Name>
+    <ProjectReference Include="..\..\ColorThief.Forms.Android\ColorThief.Forms.Android.csproj">
+      <Project>{85310049-2c64-4c1e-bf5a-212a50e611ee}</Project>
+      <Name>ColorThief.Forms.Android</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="..\ColorTestApp\ColorTestApp.projitems" Label="Shared" Condition="Exists('..\ColorTestApp\ColorTestApp.projitems')" />

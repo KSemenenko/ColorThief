@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using ColorThiefDotNet;
 using Plugin.Media;
 using Plugin.Media.Abstractions;
@@ -65,10 +66,13 @@ namespace ColorTestApp
                     return stream;
                 });
 
+
+                Forms(image.Source);
+                return;
+
 #if ANDROID
 
                 var bitmap1 = BitmapFactory.DecodeStream(file.GetStream());
-                //var bitmap1 = Android.Graphics.BitmapFactory.DecodeFile(file.Path);
                 var ct = new ColorThief();
                 var ctColor = ct.GetColor(bitmap1);               
                 MainPage.BackgroundColor = Color.FromHex(ctColor.Color.ToHexString());
@@ -106,6 +110,12 @@ namespace ColorTestApp
 
         }
 
+        private async Task Forms(ImageSource file)
+        {
+            var ctColor = await ColorThiefDotNet.Forms.CrossColorThief.Current.GetColor(file);
+            MainPage.BackgroundColor = Color.FromHex(ctColor.Color.ToHexString());
+        }
+
 #if WINDOWS_UWP
         private async Task UWP(MediaFile file)
         {
@@ -126,5 +136,5 @@ namespace ColorTestApp
             }
         }
 #endif
-    }
+        }
 }

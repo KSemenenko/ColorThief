@@ -146,9 +146,9 @@
     <Reference Include="Xamarin.iOS" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\ColorThief.iOS\ColorThief.iOS.csproj">
-      <Project>{d778f4be-e4bf-436d-b4a1-5de48a6f785f}</Project>
-      <Name>ColorThief.iOS</Name>
+    <ProjectReference Include="..\..\ColorThief.Forms.iOS\ColorThief.Forms.iOS.csproj">
+      <Project>{e5b10629-32bf-42d8-84c0-1f9dba6d041b}</Project>
+      <Name>ColorThief.Forms.iOS</Name>
       <IsAppExtension>false</IsAppExtension>
       <IsWatchApp>false</IsWatchApp>
     </ProjectReference>
