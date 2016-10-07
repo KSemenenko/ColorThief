@@ -3,8 +3,8 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata minClientVersion="2.8.3">
     <id>ksemenenko.ColorThief.Forms</id>
-    <version>1.0.1.2</version>
-    <title>Color Thief for .NET</title>
+    <version>1.0.0.0</version>
+    <title>ColorThief for Xamarin Forms</title>
     <authors>ksemenenko</authors>
     <owners>ksemenenko</owners>
     <licenseUrl>https://github.com/KSemenenko/ColorThief/blob/master/LICENSE</licenseUrl>
@@ -17,7 +17,6 @@
     <summary> A code for grabbing the color palette from an image. Uses C# and .NET to make it happen.</summary>
     <tags>ColorThief, Color, Thief, .net, xamarin, pcl, plugin, windows phone, uwp, winphone, wp8, winrt, android, xamarin.forms, ios, mac, version</tags>
     <dependencies>
-      <dependency id="ksemenenko.ColorThief" version="1.1.0.1" />
       <dependency id="Xamarin.Forms" version="2.3.0.107" />
     </dependencies>
   </metadata>
