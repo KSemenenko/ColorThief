@@ -22,7 +22,7 @@ namespace ColorThiefDotNet
         /// <returns></returns>
         public async Task<QuantizedColor> GetColor(BitmapDecoder sourceImage, int quality = DefaultQuality, bool ignoreWhite = DefaultIgnoreWhite)
         {
-            var palette = await GetPalette(sourceImage, 1, quality, ignoreWhite);
+            var palette = await GetPalette(sourceImage, 2, quality, ignoreWhite);
             var dominantColor = palette.FirstOrDefault();
             return dominantColor;
         }

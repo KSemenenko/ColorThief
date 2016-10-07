@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Threading.Tasks;
 using Windows.Graphics.Imaging;
 using Windows.Storage.Streams;
@@ -34,7 +35,8 @@ namespace ColorThiefDotNet.Forms
             }
             else if(imageSource is StreamImageSource)
             {
-                handler = new StreamImageSourceHandler();
+                var stream = await ((IStreamImageSource)imageSource).GetStreamAsync();
+                return await BitmapDecoder.CreateAsync(WindowsRuntimeStreamExtensions.AsRandomAccessStream(stream));
             }
             else if(imageSource is UriImageSource)
             {
@@ -46,19 +48,14 @@ namespace ColorThiefDotNet.Forms
             }
 
             var bitmapImage = await handler.LoadImageAsync(imageSource) as BitmapImage;
-            RandomAccessStreamReference stream = null;
 
             if (bitmapImage?.UriSource != null)
             {
-                stream = RandomAccessStreamReference.CreateFromUri(bitmapImage.UriSource);
-            }
-
-            if(stream != null)
-            {
-                using (IRandomAccessStreamWithContentType streamWithContent = await stream.OpenReadAsync())
+                using (IRandomAccessStreamWithContentType streamWithContent = await RandomAccessStreamReference.CreateFromUri(bitmapImage.UriSource).OpenReadAsync())
                 {
                     return await BitmapDecoder.CreateAsync(streamWithContent);
                 }
+
             }
 
             throw new NotImplementedException();
