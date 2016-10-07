@@ -35,8 +35,13 @@ namespace ColorThiefDotNet.Forms
             }
             else if(imageSource is StreamImageSource)
             {
+                handler = new StreamImageSourceHandler();
                 var stream = await ((IStreamImageSource)imageSource).GetStreamAsync();
-                return await BitmapDecoder.CreateAsync(WindowsRuntimeStreamExtensions.AsRandomAccessStream(stream));
+                if(stream != null)
+                {
+                    return await BitmapDecoder.CreateAsync(WindowsRuntimeStreamExtensions.AsRandomAccessStream(stream));
+                }
+                
             }
             else if(imageSource is UriImageSource)
             {

@@ -42,9 +42,16 @@ namespace ColorTestApp
             // The root page of your application
 
             var takePhoto = new Button {Text = "GetPhoto"};
+            var loadImage = new Button { Text = "loadImage" };
             var image = new Image();
 
-            takePhoto.Clicked += async (sender, args) =>
+            loadImage.Clicked += async (sender, args) =>
+            {
+                var source = ImageSource.FromResource(ResourcePrefix + "test1.jpg");
+                await Forms(source);
+            };
+
+                takePhoto.Clicked += async (sender, args) =>
             {
                 MediaFile file;
 
@@ -75,6 +82,9 @@ namespace ColorTestApp
 
 
                 Forms(image.Source);
+
+    
+
                 return;
 
 #if ANDROID
@@ -110,6 +120,7 @@ namespace ColorTestApp
                             Text = "Welcome to Xamarin Forms!"
                         },
                         takePhoto,
+                        loadImage,
                         image
                     }
                 }
