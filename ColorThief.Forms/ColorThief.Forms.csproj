@@ -41,6 +41,7 @@
     <Compile Include="..\ColorThieft.Shared\SharedAssemblyInfo.cs">
       <Link>Properties\SharedAssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="CrossColorThief.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="IColorThief.cs" />
   </ItemGroup>
