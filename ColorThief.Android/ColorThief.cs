@@ -21,7 +21,7 @@ namespace ColorThiefDotNet
         /// <returns></returns>
         public QuantizedColor GetColor(Bitmap sourceImage, int quality = DefaultQuality, bool ignoreWhite = DefaultIgnoreWhite)
         {
-            var palette = GetPalette(sourceImage, 1, quality, ignoreWhite);
+            var palette = GetPalette(sourceImage, 2, quality, ignoreWhite);
             var dominantColor = palette.FirstOrDefault();
             return dominantColor;
         }
