@@ -45,14 +45,24 @@ namespace ColorThiefDotNet.Forms
                 throw new NotImplementedException();
             }
 
-            var originalBitmap = await handler.LoadImageAsync(imageSource) as BitmapImage;
+            var bitmapImage = await handler.LoadImageAsync(imageSource) as BitmapImage;
+            RandomAccessStreamReference stream = null;
 
-            RandomAccessStreamReference rasr = RandomAccessStreamReference.CreateFromUri(originalBitmap.UriSource);
-
-            using(IRandomAccessStreamWithContentType streamWithContent = await rasr.OpenReadAsync())
+            if (bitmapImage?.UriSource != null)
             {
-                return await BitmapDecoder.CreateAsync(streamWithContent);
+                stream = RandomAccessStreamReference.CreateFromUri(bitmapImage.UriSource);
             }
+
+            if(stream != null)
+            {
+                using (IRandomAccessStreamWithContentType streamWithContent = await stream.OpenReadAsync())
+                {
+                    return await BitmapDecoder.CreateAsync(streamWithContent);
+                }
+            }
+
+            throw new NotImplementedException();
+
         }
     }
 }

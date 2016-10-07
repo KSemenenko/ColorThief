@@ -6,6 +6,7 @@ using Windows.Graphics.Imaging;
 using Windows.Storage;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Navigation;
+using ColorThiefDotNet;
 using Plugin.Media.Abstractions;
 using Xamarin.Forms;
 using Application = Windows.UI.Xaml.Application;
@@ -99,17 +100,6 @@ namespace ColorTestApp.UWP
             deferral.Complete();
         }
 
-        private async Task UWP(MediaFile file)
-        {
-            var inputFile = await StorageFile.GetFileFromPathAsync(file.Path);
-
-            using(var stream = await inputFile.OpenAsync(FileAccessMode.Read))
-            {
-                var decoder = await BitmapDecoder.CreateAsync(stream);
-                var ct = new ColorThief.ColorThief();
-                var xxxx = ct.GetColor(decoder);
-                var a = 5;
-            }
-        }
+        
     }
 }

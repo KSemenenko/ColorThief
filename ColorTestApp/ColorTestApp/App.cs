@@ -11,6 +11,13 @@ using Android.Graphics;
 #if WINDOWS_UWP
 using Windows.Graphics.Imaging;
 using Windows.Storage.Streams;
+using System;
+using System.IO;
+using System.Threading.Tasks;
+using Windows.Graphics.Imaging;
+using Windows.Storage.Streams;
+using ColorThiefDotNet;
+using Plugin.Media.Abstractions;
 #endif
 #if __IOS__
 using UIKit;
@@ -136,5 +143,5 @@ namespace ColorTestApp
             }
         }
 #endif
-        }
+    }
 }
