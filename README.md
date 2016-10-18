@@ -9,6 +9,9 @@ Many thanks for C# code [UWP Version](https://gist.github.com/zumicts/c5050a36e4
 ## Available at NuGet. 
 https://www.nuget.org/packages/ksemenenko.ColorThief/
 
+## NuGet for Xamarin Forms only:
+https://www.nuget.org/packages/ksemenenko.ColorThief.Forms/
+
 ###Platforms:
 |Platform|Supported|Version|
 | ------------------- | :-----------: | :------------------: |
