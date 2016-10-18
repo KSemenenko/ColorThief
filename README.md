@@ -15,7 +15,7 @@ https://www.nuget.org/packages/ksemenenko.ColorThief.Forms/
 ###Platforms:
 |Platform|Supported|Version|
 | ------------------- | :-----------: | :------------------: |
-|Xamarin.iOS|Partial|iOS 6+|
+|Xamarin.iOS|Yes|iOS 6+|
 |Xamarin.Android|Yes|API 10+|
 |Windows 10 UWP|Yes|10+|
 |Windows Phone 8|No|8.0+|
