@@ -23,7 +23,7 @@ namespace ColorThiefDotNet
         public async Task<QuantizedColor> GetColor(BitmapDecoder sourceImage, int quality = DefaultQuality, bool ignoreWhite = DefaultIgnoreWhite)
         {
             var palette = await GetPalette(sourceImage, 2, quality, ignoreWhite);
-            var dominantColor = palette.FirstOrDefault();
+            var dominantColor = palette.LastOrDefault();
             return dominantColor;
         }
 
@@ -45,7 +45,20 @@ namespace ColorThiefDotNet
         {
             var pixelArray = await GetPixelsFast(sourceImage, quality, ignoreWhite);
             var cmap = GetColorMap(pixelArray, colorCount);
-            return cmap != null ? cmap.GeneratePalette() : new List<QuantizedColor>();
+            if(cmap != null)
+            {
+                var colors = cmap.GeneratePalette();
+                var avgColor = new QuantizedColor(new Color
+                {
+                    A = Convert.ToByte(colors.Average(a => a.Color.A)),
+                    R = Convert.ToByte(colors.Average(a => a.Color.R)),
+                    G = Convert.ToByte(colors.Average(a => a.Color.G)),
+                    B = Convert.ToByte(colors.Average(a => a.Color.B))
+                }, Convert.ToInt32(colors.Average(a => a.Population)));
+                colors.Add(avgColor);
+                return colors;
+            }
+            return new List<QuantizedColor>();
         }
 
         private async Task<byte[]> GetIntFromPixel(BitmapDecoder decoder)
