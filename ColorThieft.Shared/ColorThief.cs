@@ -19,6 +19,12 @@ namespace ColorThiefDotNet
         {
             // Send array to quantize function which clusters values using median
             // cut algorithm
+
+            if (colorCount > 0)
+            {
+                --colorCount;
+            }
+
             var cmap = Mmcq.Quantize(pixelArray, colorCount);
             return cmap;
         }
