@@ -1,4 +1,4 @@
-#Color Thief .NET
+# Color Thief .NET
 
 A code for grabbing the color palette from an image. Uses C# and .NET to make it happen.
 
@@ -12,7 +12,7 @@ https://www.nuget.org/packages/ksemenenko.ColorThief/
 ## NuGet for Xamarin Forms only:
 https://www.nuget.org/packages/ksemenenko.ColorThief.Forms/
 
-###Platforms:
+### Platforms:
 |Platform|Supported|Version|
 | ------------------- | :-----------: | :------------------: |
 |Xamarin.iOS|Yes|iOS 6+|
@@ -25,15 +25,15 @@ https://www.nuget.org/packages/ksemenenko.ColorThief.Forms/
 |Desktop .NET 4.5|Yes||
 |Desktop .NET 4.6|Yes||
 
-##How to use
+## How to use
 
-###Get the dominant color from an image
+### Get the dominant color from an image
 ```cs
 var colorThief = new ColorThief();
 colorThief.GetColor(sourceImage);
 ```
 
-###Build a color palette from an image
+### Build a color palette from an image
 
 In this example, we build an 8 color palette.
 
