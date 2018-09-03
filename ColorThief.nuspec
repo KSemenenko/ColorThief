@@ -22,9 +22,9 @@
   <files>
 
     <!--ColorThief.Netstandard.v20-->
-    <file src="ColorThief.Netstandard.v20\bin\Release\ColorThief.Netstandard.v20.dll" target="lib\net45\ColorThief.Netstandard.v20.dll" />
-    <file src="ColorThief.Netstandard.v20\bin\Release\ColorThief.Netstandard.v20.xml" target="lib\net45\ColorThief.Netstandard.v20.xml" />
-    <file src="ColorThief.Netstandard.v20\bin\Release\ColorThief.Netstandard.v20.pdb" target="lib\net45\ColorThief.Netstandard.v20.pdb" />
+    <file src="ColorThief.Netstandard.v20\bin\Release\ColorThief.Netstandard.v20.dll" target="lib\netstandard2.0\ColorThief.Netstandard.v20.dll" />
+    <file src="ColorThief.Netstandard.v20\bin\Release\ColorThief.Netstandard.v20.xml" target="lib\netstandard2.0\ColorThief.Netstandard.v20.xml" />
+    <file src="ColorThief.Netstandard.v20\bin\Release\ColorThief.Netstandard.v20.pdb" target="lib\netstandard2.0\ColorThief.Netstandard.v20.pdb" />
     
     <!--ColorThief.Desktop.v45-->
     <file src="ColorThief.Desktop.v45\bin\Release\ColorThief.Desktop.v45.dll" target="lib\net45\ColorThief.Desktop.v45.dll" />
