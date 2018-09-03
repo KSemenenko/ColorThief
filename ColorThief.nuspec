@@ -3,7 +3,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata minClientVersion="2.8.3">
     <id>ksemenenko.ColorThief</id>
-    <version>1.1.0.3</version>
+    <version>1.1.0.4</version>
     <title>ColorThief for .NET</title>
     <authors>ksemenenko</authors>
     <owners>ksemenenko</owners>
@@ -15,12 +15,17 @@
       A code for grabbing the color palette from an image. Uses C# and .NET to make it happen.
     </description>
     <summary> A code for grabbing the color palette from an image. Uses C# and .NET to make it happen.</summary>
-    <tags>ColorThief, Color, Thief, .net, xamarin, pcl, plugin, windows phone, uwp, winphone, wp8, winrt, android, xamarin.forms, ios, mac, version</tags>
+    <tags>ColorThief, Color, Thief, .net, netstandard, xamarin, pcl, plugin, windows phone, uwp, winphone, wp8, winrt, android, xamarin.forms, ios, mac, version</tags>
     <dependencies>
     </dependencies>
   </metadata>
   <files>
 
+    <!--ColorThief.Netstandard.v20-->
+    <file src="ColorThief.Netstandard.v20\bin\Release\ColorThief.Netstandard.v20.dll" target="lib\netstandard2.0\ColorThief.Netstandard.v20.dll" />
+    <file src="ColorThief.Netstandard.v20\bin\Release\ColorThief.Netstandard.v20.xml" target="lib\netstandard2.0\ColorThief.Netstandard.v20.xml" />
+    <file src="ColorThief.Netstandard.v20\bin\Release\ColorThief.Netstandard.v20.pdb" target="lib\netstandard2.0\ColorThief.Netstandard.v20.pdb" />
+    
     <!--ColorThief.Desktop.v45-->
     <file src="ColorThief.Desktop.v45\bin\Release\ColorThief.Desktop.v45.dll" target="lib\net45\ColorThief.Desktop.v45.dll" />
     <file src="ColorThief.Desktop.v45\bin\Release\ColorThief.Desktop.v45.xml" target="lib\net45\ColorThief.Desktop.v45.xml" />
